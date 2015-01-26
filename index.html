@@ -1,98 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="estaine">
-    <link rel="icon" href="favicon-circle.ico">
+    <meta name="author" content="">
+    <link rel="icon" href="res/icons/favicon.ico">
 
-    <title>Flyxster - Lowcost flights</title>
-
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-      <script src="bootstrap/js/bootstrap.js"></script>
-
-      <script  type="text/javascript" src="js/typeahead.min.js"></script>
-      <script type="text/javascript">
-          $(document).ready(function(){
-              $('input.typeahead').typeahead({
-                  name: 'accounts',
-                  local: ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen']
-              });
-          });
-      </script>
-        <!-- Bootstrap core CSS -->
-      <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-        <!-- Bootstrap theme -->
-        <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+    <title>Flyxster - Fly cheaper</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/typeahead.js"></script>
+    <script src="datepicker/js/bootstrap-datepicker.js"></script>
 
 
-        <!-- Custom styles for this template -->
+    <script type="text/javascript">
+$(document).ready(function() {
+    var $input = $(".airport");
+    $input.typeahead({
+        source: ["Amsterdam (AMS)", "Barcelona (BCN)", "Brussels Charleroi (CRL)", "Madrid (MAD)", "Milan Bergamo (BGY)", "Paris Beauvais (BVA)", "Riga (RIX)", "Rome Ciampino (CIA)", "Rome Fiumicino (FCO)", "Vilnius (VNO)"],
+        autoSelect: true
+    });
+    $input.change(function () {
+        var current = $input.typeahead("getActive");
+        if (current) {
+            // Some item from your model is active!
+            if (current.name == $input.val()) {
+                // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+            } else {
+                // This means it is only a partial match, you can either add a new item
+                // or take the active if you don't want new items
+            }
+        } else {
+            // Nothing is active so it is a new value (or maybe empty value)
+        }
+    });
+
+    $(".flight-type-selector").click(function() {
+        if ($("input[name=flight-type]:checked").val() == "One-way") {
+            $("#date-to").attr("disabled", true);
+
+        }
+        else {
+            $("#date-to").attr("disabled", false);
+        }
+    });
+
+
+    $("#date-from, #date-to").datepicker({
+        format: "dd.mm.yyyy"
+    });
+});
+
+
+    </script>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+
+    <link href="datepicker/css/datepicker.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet">
 
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html">
+                <svg id="logo" height="45" width="45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+                    <image x="0" y="3" height="45" width="45" xlink:href="res/icons/favicon.svg" />
+                </svg>
+            </a>
+        </div>
 
 
-  </head>
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" placeholder="Login" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control">
+                </div>
 
-  <body role="document">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
+                <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
 
-              <a href="index.html">
-              <svg id="logo" height="45" width="45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-                  <image x="0" y="3" height="45" width="45" xlink:href="favicon-circle.svg" />
-              </svg>
-              </a>
-          </div>
+<!-- Main jumbotron for a primary marketing message or call to action -->
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3 search-params">
+            <h2>From</h2>
+            <div class="input-group">
+                <span class="input-group-addon" id="airport-from-addon">Airport</span>
+                <input type="text" class="form-control airport" id="airport-from" placeholder="Start typing..." aria-describedby="airport-from-addon" autocomplete="off">
+            </div>
+            <br>
+            <div class="input-group date" id="date-from-group">
+                <span class="input-group-addon" id="date-from-addon"> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                <input type="text" class="form-control" id="date-from" aria-describedby="date-from-addon">
 
-                  <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#">One more separated link</a></li>
-                      </ul>
-                  </li>
-              </ul>
-              <form class="navbar-form navbar-left" role="search">
-                  <div class="form-group">
-                      <input type="text" class="form-control typeahead" placeholder="From">
-                  </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
-              </form>
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#">Link</a></li>
-                  <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
-                      </ul>
-                  </li>
-              </ul>
-          </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-  </nav>
-
-      <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+            </div>
+        </div>
 
 
-  </body>
-</html>
+        <div class="col-md-3  search-params">
+            <h2>To</h2>
+            <div class="input-group">
+                <span class="input-group-addon" id="airport-to-addon">Airport</span>
+                <input type="text" class="form-control airport" id="airport-to" placeholder="Start typing..." aria-describedby="airport-to-addon" autocomplete="off">
+            </div>
+            <br>
+            <div class="input-group date" id="date-to-group">
+                <span class="input-group-addon" id="date-to-addon"> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                <input type="text" class="form-control" id="date-to" aria-describedby="date-to-addon">
+            </div>
+            <div id="flight-type-selector-container">
+                <div class="pull-left">
+                    <input type="radio" name="flight-type" class="flight-type-selector"  value="Return" checked><label>Return</label>
+                </div>
+                <div class="pull-right">
+                    <input type="radio" name="flight-type" class="flight-type-selector"  value="One-way"><label>One-way</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 button-container ">
+            <button type = button class="btn btn-default pull-left">Show advanced options</button>
+            <button type = button class="btn btn-default pull-right">Search</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->

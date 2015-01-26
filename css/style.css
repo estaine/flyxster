@@ -1,13 +1,95 @@
+@font-face {
+  font-family: Gandhi;
+  font-weight: normal;
+  font-style: normal;
+  src: url("../res/fonts/GandhiSans-Regular.otf");
+}
+@font-face {
+  font-family: Gandhi;
+  font-weight: bold;
+  font-style: normal;
+  src: url("../res/fonts/GandhiSans-Bold.otf");
+}
+@font-face {
+  font-family: Gandhi;
+  font-weight: normal;
+  font-style: italic;
+  src: url("../res/fonts/GandhiSans-Italic.otf");
+}
+@font-face {
+  font-family: Gandhi;
+  font-weight: bold;
+  font-style: italic;
+  src: url("../res/fonts/GandhiSans-BoldItalic.otf");
+}
 body {
-  background-color: #dddddd;
-  color: #000000;
-  padding-top: 70px;
+  background-color: #333333;
+  color: #eeeeee;
+  padding-top: 50px;
+  padding-bottom: 20px;
 }
 .auth {
   color: #555555;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
 }
 .navbar-inverse {
-  background-image: linear-gradient(to bottom, #dddddd 0%, #ffffff 100%);
+  background-image: linear-gradient(to bottom, #222222 0%, #333333 100%);
   border-color: #bbbbbb;
+}
+@media (min-width: 1400px) {
+  .container {
+    width: 1380px;
+  }
+}
+@media (min-width: 1600px) {
+  .container {
+    width: 1580px;
+  }
+}
+#logo {
+  float: left;
+}
+.button-container {
+  padding-top: 50px;
+  text-align: center;
+}
+body {
+  font-family: Gandhi;
+  font-weight: bold;
+  font-size: 14px;
+}
+.navbar-fixed-top {
+  border-color: #666666;
+  border: 0;
+}
+#flight-type-selector-container {
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 60px;
+  vertical-align: middle;
+}
+.flight-type-selector-label {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+.flight-type-selector + label {
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 6px;
+}
+#flyxster-title {
+  padding-left: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.search-params .input-group-addon {
+  min-width: 70px;
+}
+.typeahead {
+  width: calc(100% - 70px);
+}
+.datepicker {
+  color: #333333;
 }
