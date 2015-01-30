@@ -1,0 +1,148 @@
+@import "global-variables.less";
+
+@detailed-table-padding-small: 3px;
+@detailed-table-padding-normal: 9px;
+@detailed-table-padding-large: 12px;
+
+body {
+  padding-top: 90px;
+  padding-bottom: 20px;
+}
+
+
+#search-results,
+#search-results table{
+  font-size: 18px;
+  color: @dark-grey;
+}
+
+#search-results {
+  border: 1px solid @medium-grey;
+}
+
+#search-results > thead > tr > th {
+  border: 1px solid @medium-grey;
+  border-bottom: 2px solid @medium-grey;
+}
+
+#search-results > tbody > tr > td {
+  border: 1px solid @medium-grey;
+}
+
+#search-results > thead {
+  font-weight: bold;
+}
+
+#search-results > thead > tr > th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+#search-results > tbody > tr:nth-of-type(even)
+{
+  background-color: @light-grey;
+}
+
+#search-results > thead,
+#search-results > tbody > tr:nth-of-type(odd)
+{
+  background-color: @lighter-grey;
+}
+
+#search-results > tbody > tr > td.line-expander:hover {
+  cursor: pointer;
+}
+
+.hidden-row, .hidden-cell {
+  border: 0 !important;
+  padding: 0 !important;
+
+}
+
+.airline-logo-container {
+  padding: 4px !important;
+  text-align: center !important;
+}
+
+.airline-logo-container > img {
+  width: 30px;
+  height: 30px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.detailed-flight-info,
+.detailed-flight-info > thead > tr > th,
+.detailed-flight-info > tbody > tr,
+.detailed-flight-info > tbody > tr > td {
+  border-collapse: collapse;
+  padding: 3px @detailed-table-padding-normal;
+  font-size: 15px !important;
+}
+
+.airline-cell {
+  padding-right: @detailed-table-padding-small !important;
+}
+
+.flight-number-cell {
+  padding-left: @detailed-table-padding-small !important;
+  padding-right: @detailed-table-padding-large !important;
+}
+
+.departure-weekday-cell {
+  padding-left: @detailed-table-padding-large !important;
+  padding-right: @detailed-table-padding-small !important;
+}
+
+.departure-date-cell {
+  padding-left: @detailed-table-padding-small !important;
+  padding-right: @detailed-table-padding-large !important;
+}
+
+.departure-airport-cell {
+  padding-left: @detailed-table-padding-large !important;
+  padding-right: @detailed-table-padding-small !important;
+}
+
+.departure-airport-code-cell {
+  padding-left: @detailed-table-padding-small !important;
+}
+
+
+.departure-time-cell {
+  padding-left: @detailed-table-padding-small !important;
+}
+
+.arrival-time-cell {
+  padding-right: @detailed-table-padding-small !important;
+}
+
+.arrival-airport-code-cell {
+  padding-right: @detailed-table-padding-small !important;
+}
+
+.arrival-airport-cell {
+  padding-left: @detailed-table-padding-small !important;
+  padding-right: @detailed-table-padding-large !important;
+}
+
+.flight-duration-cell {
+  padding-left: @detailed-table-padding-large !important;
+  padding-right: @detailed-table-padding-large !important;
+}
+
+.price-cell {
+  padding-left: (2 * @detailed-table-padding-large) !important;
+}
+
+.detailed-data-block {
+  padding:0 80px !important;
+}
+
+.stops-short-cell {
+  text-align: center;
+}
+
+.search-again-button-block {
+  padding-bottom:20px; text-align: center;
+}

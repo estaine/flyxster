@@ -1,0 +1,104 @@
+@import "global-variables.less";
+
+body {
+  background-color: @dark-grey;
+  color: @lighter-grey;
+  font-family: Roboto;
+  font-weight: normal;
+}
+
+
+.navbar-inverse {
+  background-image: linear-gradient(to bottom, @darker-grey 0%, @dark-grey 100%);
+  border-color: @darker-grey;
+}
+
+
+.navbar-fixed-top {
+  border: 0;
+}
+
+.main-title {
+  font-family: Prosto;
+  font-size: 56px;
+  text-align: center;
+  color: @lighter-grey;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+#flyxster-title {
+  padding-left: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: @screen-desktop-large-min-width) {
+  .container {
+    width: 1380px;
+  }
+
+}
+
+@media (min-width: @screen-desktop-larger-min-width) {
+  .container {
+    width: 1680px;
+  }
+
+
+}
+
+.button-container {
+  padding-top: 50px;
+  text-align: center;
+}
+
+
+
+#flight-type-selector-container {
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 60px;
+  vertical-align: middle;
+}
+
+
+.flight-type-selector + label {
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 6px;
+}
+
+
+.airport-addon, .date-addon {
+  min-width: 70px;
+}
+
+.typeahead {
+  width: ~"calc(100% - 70px)";
+}
+
+.datepicker.dropdown-menu {
+  color: @darker-grey;
+}
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+  visibility: hidden;
+}
+
+.date-addon:hover {
+  cursor: pointer;
+}
+
+input.date:hover {
+  cursor: default;
+}
+
+.date-disabled {
+  background-color: #bbbbbb !important;
+}
+
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <definition name="mainTemplate" template="/WEB-INF/templates/template.jsp">
+        <put-attribute name="head" value="/WEB-INF/static/head.jsp" />
+        <put-attribute name="nav" value="/WEB-INF/static/nav.jsp" />
+        <put-attribute name="logo" value="/WEB-INF/static/logo.jsp" />
+        <put-attribute name="mainContent" value="" />
+
+        <put-attribute name="specialJavascript" value="" />
+        <put-attribute name="specialStylesheet" value="" />
+
+        <put-list-attribute name="commonJavascripts">
+            <add-attribute value="http://code.jquery.com/jquery-1.11.2.js" />
+            <add-attribute value="/resources/bootstrap/js/bootstrap.js" />
+            <add-attribute value="/resources/js/typeahead.js" />
+            <add-attribute value="/resources/bootstrap-datepicker/js/bootstrap-datepicker.js" />
+            <add-attribute value="/resources/js/init.js" />
+        </put-list-attribute>
+
+        <put-list-attribute name="commonStylesheets">
+            <add-attribute value="/resources/bootstrap/css/bootstrap.css" />
+            <add-attribute value="/resources/bootstrap/css/bootstrap-theme.css" />
+            <add-attribute value="/resources/bootstrap-datepicker/css/datepicker3.css" />
+            <add-attribute value="/resources/css/fonts.css" />
+            <add-attribute value="/resources/css/style.css" />
+        </put-list-attribute>
+
+
+
+    </definition>
+
+    <definition name="index" extends="mainTemplate">
+        <put-attribute name="mainContent" value="/WEB-INF/bodies/index.jsp" />
+        <put-attribute name="specialJavascript" value="/resources/js/index.js" />
+        <put-attribute name="specialStylesheet" value="/resources/css/index.css" />
+
+    </definition>
+
+    <definition name="search" extends="mainTemplate">
+        <put-attribute name="mainContent" value="/WEB-INF/bodies/search.jsp" />
+        <put-attribute name="specialJavascript" value="/resources/js/search.js" />
+        <put-attribute name="specialStylesheet" value="/resources/css/search.css" />
+    </definition>
+
+</tiles-definitions>

@@ -1,0 +1,37 @@
+@font-face {
+    font-family: Roboto;
+    font-weight: normal;
+    font-style: normal;
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: Roboto;
+    font-weight: bold;
+    font-style: normal;
+    src: url("../fonts/Roboto-Bold.ttf");
+}
+
+@font-face {
+    font-family: Roboto;
+    font-weight: normal;
+    font-style: italic;
+    src: url("../fonts/Roboto-Italic.ttf");
+}
+
+@font-face {
+    font-family: Roboto;
+    font-weight: bold;
+    font-style: italic;
+    src: url("../fonts/Roboto-BoldItalic.ttf");
+}
+
+@font-face {
+/*
+    TODO: remove unused glyphs from this font;
+*/
+    font-family: Prosto;
+    font-weight: normal;
+    font-style: normal;
+    src: url("../fonts/Prosto.ttf");
+}

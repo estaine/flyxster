@@ -1,0 +1,111 @@
+body {
+  padding-top: 90px;
+  padding-bottom: 20px;
+}
+#search-results,
+#search-results table {
+  font-size: 18px;
+  color: #333333;
+}
+#search-results {
+  border: 1px solid #999999;
+}
+#search-results > thead > tr > th {
+  border: 1px solid #999999;
+  border-bottom: 2px solid #999999;
+}
+#search-results > tbody > tr > td {
+  border: 1px solid #999999;
+}
+#search-results > thead {
+  font-weight: bold;
+}
+#search-results > thead > tr > th {
+  text-align: center;
+  vertical-align: middle;
+}
+#search-results > tbody > tr:nth-of-type(even) {
+  background-color: #cccccc;
+}
+#search-results > thead,
+#search-results > tbody > tr:nth-of-type(odd) {
+  background-color: #eeeeee;
+}
+#search-results > tbody > tr > td.line-expander:hover {
+  cursor: pointer;
+}
+.hidden-row,
+.hidden-cell {
+  border: 0 !important;
+  padding: 0 !important;
+}
+.airline-logo-container {
+  padding: 4px !important;
+  text-align: center !important;
+}
+.airline-logo-container > img {
+  width: 30px;
+  height: 30px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.detailed-flight-info,
+.detailed-flight-info > thead > tr > th,
+.detailed-flight-info > tbody > tr,
+.detailed-flight-info > tbody > tr > td {
+  border-collapse: collapse;
+  padding: 3px 9px;
+  font-size: 15px !important;
+}
+.airline-cell {
+  padding-right: 3px !important;
+}
+.flight-number-cell {
+  padding-left: 3px !important;
+  padding-right: 12px !important;
+}
+.departure-weekday-cell {
+  padding-left: 12px !important;
+  padding-right: 3px !important;
+}
+.departure-date-cell {
+  padding-left: 3px !important;
+  padding-right: 12px !important;
+}
+.departure-airport-cell {
+  padding-left: 12px !important;
+  padding-right: 3px !important;
+}
+.departure-airport-code-cell {
+  padding-left: 3px !important;
+}
+.departure-time-cell {
+  padding-left: 3px !important;
+}
+.arrival-time-cell {
+  padding-right: 3px !important;
+}
+.arrival-airport-code-cell {
+  padding-right: 3px !important;
+}
+.arrival-airport-cell {
+  padding-left: 3px !important;
+  padding-right: 12px !important;
+}
+.flight-duration-cell {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+.price-cell {
+  padding-left: 24px !important;
+}
+.detailed-data-block {
+  padding: 0 80px !important;
+}
+.stops-short-cell {
+  text-align: center;
+}
+.search-again-button-block {
+  padding-bottom: 20px;
+  text-align: center;
+}
