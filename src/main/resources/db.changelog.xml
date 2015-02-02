@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="estaine">
+        <insert tableName="countries">
+            <column name="name" type="varchar(40)" value="France"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="name" type="varchar(40)" value="Spain"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="name" type="varchar(40)" value="Italy"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="name" type="varchar(40)" value="Germany"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="name" type="varchar(40)" value="Poland"/>
+        </insert>
+    </changeSet>
+    <changeSet id="2" author="estaine">
+        <insert tableName="cities">
+            <column name="name" type="varchar(40)" value="Paris"/>
+            <column name="country_id" type="int(11)" value="6"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="name" type="varchar(40)" value="Barcelona"/>
+            <column name="country_id" type="int(11)" value="7"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="name" type="varchar(40)" value="Madrid"/>
+            <column name="country_id" type="int(11)" value="7"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="name" type="varchar(40)" value="Milan"/>
+            <column name="country_id" type="int(11)" value="8"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="name" type="varchar(40)" value="Rome"/>
+            <column name="country_id" type="int(11)" value="8"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="name" type="varchar(40)" value="Berlin"/>
+            <column name="country_id" type="int(11)" value="9"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="name" type="varchar(40)" value="Dortmund"/>
+            <column name="country_id" type="int(11)" value="9"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="name" type="varchar(40)" value="Warsaw"/>
+            <column name="country_id" type="int(11)" value="10"/>
+        </insert>
+    </changeSet>
+    <changeSet id="3" author="estaine">
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="CDG"/>
+            <column name="name" type="varchar(50)" value="Charles de Gaulle"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="BVA"/>
+            <column name="name" type="varchar(50)" value="Beauvais"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="BCN"/>
+            <column name="name" type="varchar(50)" value="El Prat"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="MAD"/>
+            <column name="name" type="varchar(50)" value="Barajas"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="MXP"/>
+            <column name="name" type="varchar(50)" value="Malpensa"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="BGY"/>
+            <column name="name" type="varchar(50)" value="Bergamo Orio Al Serio"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="LIN"/>
+            <column name="name" type="varchar(50)" value="Linate"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="FCO"/>
+            <column name="name" type="varchar(50)" value="Fiumicino Leonardo da Vinci"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="CIA"/>
+            <column name="name" type="varchar(50)" value="Ciampino"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="TXL"/>
+            <column name="name" type="varchar(50)" value="Tegel Otto Lilienthal"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="SXF"/>
+            <column name="name" type="varchar(50)" value="Schoenefeld"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="DTM"/>
+            <column name="name" type="varchar(50)" value="Dortmund 21"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="WAW"/>
+            <column name="name" type="varchar(50)" value="Chopin"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="code" type="char(3)" value="WMI"/>
+            <column name="name" type="varchar(50)" value="Modlin"/>
+        </insert>
+    </changeSet>
+    <changeSet id="4" author="estaine">
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="15"/>
+            <column name="city_id" type="int(11)" value="18"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="16"/>
+            <column name="city_id" type="int(11)" value="18"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="17"/>
+            <column name="city_id" type="int(11)" value="19"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="18"/>
+            <column name="city_id" type="int(11)" value="20"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="19"/>
+            <column name="city_id" type="int(11)" value="21"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="20"/>
+            <column name="city_id" type="int(11)" value="21"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="21"/>
+            <column name="city_id" type="int(11)" value="21"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="22"/>
+            <column name="city_id" type="int(11)" value="22"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="23"/>
+            <column name="city_id" type="int(11)" value="22"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="24"/>
+            <column name="city_id" type="int(11)" value="23"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="25"/>
+            <column name="city_id" type="int(11)" value="23"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="26"/>
+            <column name="city_id" type="int(11)" value="24"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="27"/>
+            <column name="city_id" type="int(11)" value="25"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="airport_id" type="int(11)" value="28"/>
+            <column name="city_id" type="int(11)" value="25"/>
+        </insert>
+    </changeSet>
+    <changeSet id="5" author="estaine">
+        <insert tableName="connections">
+            <column name="airport_from_id" type="int(11)" value="15"/>
+            <column name="airport_to_id" type="int(11)" value="28"/>
+        </insert>
+        <insert tableName="connections">
+            <column name="airport_from_id" type="int(11)" value="20"/>
+            <column name="airport_to_id" type="int(11)" value="25"/>
+        </insert>
+        <insert tableName="connections">
+            <column name="airport_from_id" type="int(11)" value="18"/>
+            <column name="airport_to_id" type="int(11)" value="26"/>
+        </insert>
+        <insert tableName="connections">
+            <column name="airport_from_id" type="int(11)" value="17"/>
+            <column name="airport_to_id" type="int(11)" value="18"/>
+        </insert>
+        <insert tableName="connections">
+            <column name="airport_from_id" type="int(11)" value="16"/>
+            <column name="airport_to_id" type="int(11)" value="24"/>
+        </insert>
+
+        <insert tableName="carriers">
+            <column name="name" type="varchar(45)" value="Germanwings"/>
+        </insert>
+        <insert tableName="carriers">
+            <column name="name" type="varchar(45)" value="Ryanair"/>
+        </insert>
+        <insert tableName="carriers">
+            <column name="name" type="varchar(45)" value="easyJet"/>
+        </insert>
+    </changeSet>
+    <changeSet id="6" author="estaine">
+        <insert tableName="carriers_connections">
+            <column name="carrier_id" type="int(11)" value="4"/>
+            <column name="connection_id" type="int(11)" value="7"/>
+        </insert>
+        <insert tableName="carriers_connections">
+            <column name="carrier_id" type="int(11)" value="4"/>
+            <column name="connection_id" type="int(11)" value="8"/>
+        </insert>
+        <insert tableName="carriers_connections">
+            <column name="carrier_id" type="int(11)" value="5"/>
+            <column name="connection_id" type="int(11)" value="8"/>
+        </insert>
+        <insert tableName="carriers_connections">
+            <column name="carrier_id" type="int(11)" value="6"/>
+            <column name="connection_id" type="int(11)" value="9"/>
+        </insert>
+        <insert tableName="carriers_connections">
+            <column name="carrier_id" type="int(11)" value="6"/>
+            <column name="connection_id" type="int(11)" value="10"/>
+        </insert>
+        <insert tableName="carriers_connections">
+            <column name="carrier_id" type="int(11)" value="6"/>
+            <column name="connection_id" type="int(11)" value="11"/>
+        </insert>
+    </changeSet>
+    <changeSet id="7" author="estaine">
+
+        <insert tableName="flights">
+            <column name="connection_id" type="int(11)" value="7"/>
+            <column name="carrier_id" type="int(11)" value="4"/>
+            <column name="departure_datetime" type="datetime" value="2014-03-31 21:30:45"/>
+            <column name="flight_duration" type="int(11)" value="180"/>
+            <column name="price" type="double" value="50"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="connection_id" type="int(11)" value="11"/>
+            <column name="carrier_id" type="int(11)" value="6"/>
+            <column name="departure_datetime" type="datetime" value="2014-02-13 11:30:45"/>
+            <column name="flight_duration" type="int(11)" value="235"/>
+            <column name="price" type="double" value="60"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
