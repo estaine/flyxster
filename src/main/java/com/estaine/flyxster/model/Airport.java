@@ -13,8 +13,6 @@ public class Airport {
     private String code;
     private String name;
     private Set<City> cities;
-    private Set<Connection> connectionsFrom;
-    private Set<Connection> connectionsTo;
 
     @Id
     @GeneratedValue
@@ -62,23 +60,6 @@ public class Airport {
         this.cities = cities;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="airportFrom")
-    public Set<Connection> getConnectionsFrom() {
-        return connectionsFrom;
-    }
-
-    public void setConnectionsFrom(Set<Connection> connectionsFrom) {
-        this.connectionsFrom = connectionsFrom;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="airportTo")
-    public Set<Connection> getConnectionsTo() {
-        return connectionsTo;
-    }
-
-    public void setConnectionsTo(Set<Connection> connectionsTo) {
-        this.connectionsTo = connectionsTo;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -87,18 +68,11 @@ public class Airport {
 
         Airport airport = (Airport) o;
 
-        if (id != airport.id) return false;
-        if (code != null ? !code.equals(airport.code) : airport.code != null) return false;
-        if (name != null ? !name.equals(airport.name) : airport.name != null) return false;
-
-        return true;
+        return (id != airport.id);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        return id;
     }
 }

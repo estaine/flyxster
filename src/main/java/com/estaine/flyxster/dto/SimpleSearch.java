@@ -1,0 +1,41 @@
+package com.estaine.flyxster.dto;
+
+/**
+ * Created by AndreyRykhalsky on 04.02.2015.
+ */
+public class SimpleSearch extends OneWaySimpleSearch {
+
+    protected String returnDate;
+
+    protected Double returnDateRange;
+
+    public SimpleSearch(OneWaySimpleSearch oneWaySimpleSearch, String returnDate, Double returnDateRange) {
+        super(oneWaySimpleSearch);
+        this.returnDate = returnDate;
+        this.returnDateRange = returnDateRange;
+    }
+
+    public SimpleSearch(Integer airportFromId, Integer airportToId, String outwardDate, Double outwardDateRange, String returnDate, Double returnDateRange) {
+        super(airportFromId, airportToId, outwardDate, outwardDateRange);
+        this.returnDate = returnDate;
+        this.returnDateRange = returnDateRange;
+    }
+
+    public SimpleSearch() {}
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public Double getReturnDateRange() {
+        return returnDateRange;
+    }
+
+    public void setReturnDateRange(Double returnDateRange) {
+        this.returnDateRange = returnDateRange;
+    }
+}

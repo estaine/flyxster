@@ -10,9 +10,12 @@ import java.sql.Timestamp;
 @Table(name = "flights", schema = "", catalog = "flyxster")
 public class Flight {
     private int id;
-    private CarrierConnection carrierConnection;
+    private Airline airline;
+    private String number;
+    private Airport airportFrom;
+    private Airport airportTo;
     private Timestamp departureDatetime;
-    private int flightDuration;
+    private Timestamp arrivalDatetime;
     private double price;
 
     @Id
@@ -26,6 +29,46 @@ public class Flight {
         this.id = id;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "airline_id")
+    public Airline getAirline() {
+        return airline;
+    }
+
+    @Basic
+    @Column(name = "number", nullable = false, insertable = true, updatable = true)
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public void setAirline(Airline airline) {
+        this.airline = airline;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "airport_from_id")
+    public Airport getAirportFrom() {
+        return airportFrom;
+    }
+
+    public void setAirportFrom(Airport airportFrom) {
+        this.airportFrom = airportFrom;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "airport_to_id")
+    public Airport getAirportTo() {
+        return airportTo;
+    }
+
+    public void setAirportTo(Airport airportTo) {
+        this.airportTo = airportTo;
+    }
+
     @Basic
     @Column(name = "departure_datetime", nullable = false, insertable = true, updatable = true)
     public Timestamp getDepartureDatetime() {
@@ -37,13 +80,13 @@ public class Flight {
     }
 
     @Basic
-    @Column(name = "flight_duration", nullable = false, insertable = true, updatable = true)
-    public int getFlightDuration() {
-        return flightDuration;
+    @Column(name = "arrival_datetime", nullable = false, insertable = true, updatable = true)
+    public Timestamp getArrivalDatetime() {
+        return arrivalDatetime;
     }
 
-    public void setFlightDuration(int flightDuration) {
-        this.flightDuration = flightDuration;
+    public void setArrivalDatetime(Timestamp arrivalDatetime) {
+        this.arrivalDatetime = arrivalDatetime;
     }
 
     @Basic
@@ -56,41 +99,4 @@ public class Flight {
         this.price = price;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Flight)) return false;
-
-        Flight flight = (Flight) o;
-
-        if (flightDuration != flight.flightDuration) return false;
-        if (id != flight.id) return false;
-        if (Double.compare(flight.price, price) != 0) return false;
-        if (!departureDatetime.equals(flight.departureDatetime)) return false;
-
-        return true;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "carrier_connection_id")
-    public CarrierConnection getCarrierConnection() {
-        return carrierConnection;
-    }
-
-    public void setCarrierConnection(CarrierConnection carrierConnection) {
-        this.carrierConnection = carrierConnection;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + departureDatetime.hashCode();
-        result = 31 * result + flightDuration;
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
 }

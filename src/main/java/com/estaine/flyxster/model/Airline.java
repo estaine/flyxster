@@ -7,12 +7,12 @@ import java.util.Set;
  * Created by AndreyRykhalsky on 02.02.2015.
  */
 @Entity
-@Table(name = "carriers", schema = "", catalog = "flyxster")
-public class Carrier {
+@Table(name = "airlines", schema = "", catalog = "flyxster")
+public class Airline {
     private int id;
+    private String code;
     private String name;
-    private Set<Connection> connections;
-
+    private String iconLocation;
 
     @Id
     @GeneratedValue
@@ -26,6 +26,16 @@ public class Carrier {
     }
 
     @Basic
+    @Column(name = "code", nullable = false, insertable = true, updatable = true)
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Basic
     @Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
     public String getName() {
         return name;
@@ -35,13 +45,14 @@ public class Carrier {
         this.name = name;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "carriers")
-    public Set<Connection> getConnections() {
-        return connections;
+    @Basic
+    @Column(name = "icon_location", nullable = false, insertable = true, updatable = true, length = 45)
+    public String getIconLocation() {
+        return iconLocation;
     }
 
-    public void setConnections(Set<Connection> connections) {
-        this.connections = connections;
+    public void setIconLocation(String iconLocation) {
+        this.iconLocation = iconLocation;
     }
 
     @Override
@@ -49,10 +60,10 @@ public class Carrier {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Carrier carrier = (Carrier) o;
+        Airline airline = (Airline) o;
 
-        if (id != carrier.id) return false;
-        if (name != null ? !name.equals(carrier.name) : carrier.name != null) return false;
+        if (id != airline.id) return false;
+        if (name != null ? !name.equals(airline.name) : airline.name != null) return false;
 
         return true;
     }

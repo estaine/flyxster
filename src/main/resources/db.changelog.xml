@@ -1,251 +1,1550 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <changeSet id="1" author="estaine">
-        <insert tableName="countries">
-            <column name="name" type="varchar(40)" value="France"/>
-        </insert>
-        <insert tableName="countries">
-            <column name="name" type="varchar(40)" value="Spain"/>
-        </insert>
-        <insert tableName="countries">
-            <column name="name" type="varchar(40)" value="Italy"/>
-        </insert>
-        <insert tableName="countries">
-            <column name="name" type="varchar(40)" value="Germany"/>
-        </insert>
-        <insert tableName="countries">
-            <column name="name" type="varchar(40)" value="Poland"/>
-        </insert>
-    </changeSet>
-    <changeSet id="2" author="estaine">
-        <insert tableName="cities">
-            <column name="name" type="varchar(40)" value="Paris"/>
-            <column name="country_id" type="int(11)" value="6"/>
-        </insert>
-        <insert tableName="cities">
-            <column name="name" type="varchar(40)" value="Barcelona"/>
-            <column name="country_id" type="int(11)" value="7"/>
-        </insert>
-        <insert tableName="cities">
-            <column name="name" type="varchar(40)" value="Madrid"/>
-            <column name="country_id" type="int(11)" value="7"/>
-        </insert>
-        <insert tableName="cities">
-            <column name="name" type="varchar(40)" value="Milan"/>
-            <column name="country_id" type="int(11)" value="8"/>
-        </insert>
-        <insert tableName="cities">
-            <column name="name" type="varchar(40)" value="Rome"/>
-            <column name="country_id" type="int(11)" value="8"/>
-        </insert>
-        <insert tableName="cities">
-            <column name="name" type="varchar(40)" value="Berlin"/>
-            <column name="country_id" type="int(11)" value="9"/>
-        </insert>
-        <insert tableName="cities">
-            <column name="name" type="varchar(40)" value="Dortmund"/>
-            <column name="country_id" type="int(11)" value="9"/>
-        </insert>
-        <insert tableName="cities">
-            <column name="name" type="varchar(40)" value="Warsaw"/>
-            <column name="country_id" type="int(11)" value="10"/>
-        </insert>
-    </changeSet>
-    <changeSet id="3" author="estaine">
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="CDG"/>
-            <column name="name" type="varchar(50)" value="Charles de Gaulle"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="BVA"/>
-            <column name="name" type="varchar(50)" value="Beauvais"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="BCN"/>
-            <column name="name" type="varchar(50)" value="El Prat"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="MAD"/>
-            <column name="name" type="varchar(50)" value="Barajas"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="MXP"/>
-            <column name="name" type="varchar(50)" value="Malpensa"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="BGY"/>
-            <column name="name" type="varchar(50)" value="Bergamo Orio Al Serio"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="LIN"/>
-            <column name="name" type="varchar(50)" value="Linate"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="FCO"/>
-            <column name="name" type="varchar(50)" value="Fiumicino Leonardo da Vinci"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="CIA"/>
-            <column name="name" type="varchar(50)" value="Ciampino"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="TXL"/>
-            <column name="name" type="varchar(50)" value="Tegel Otto Lilienthal"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="SXF"/>
-            <column name="name" type="varchar(50)" value="Schoenefeld"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="DTM"/>
-            <column name="name" type="varchar(50)" value="Dortmund 21"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="WAW"/>
-            <column name="name" type="varchar(50)" value="Chopin"/>
-        </insert>
-        <insert tableName="airports">
-            <column name="code" type="char(3)" value="WMI"/>
-            <column name="name" type="varchar(50)" value="Modlin"/>
-        </insert>
-    </changeSet>
-    <changeSet id="4" author="estaine">
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="15"/>
-            <column name="city_id" type="int(11)" value="18"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="16"/>
-            <column name="city_id" type="int(11)" value="18"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="17"/>
-            <column name="city_id" type="int(11)" value="19"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="18"/>
-            <column name="city_id" type="int(11)" value="20"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="19"/>
-            <column name="city_id" type="int(11)" value="21"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="20"/>
-            <column name="city_id" type="int(11)" value="21"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="21"/>
-            <column name="city_id" type="int(11)" value="21"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="22"/>
-            <column name="city_id" type="int(11)" value="22"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="23"/>
-            <column name="city_id" type="int(11)" value="22"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="24"/>
-            <column name="city_id" type="int(11)" value="23"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="25"/>
-            <column name="city_id" type="int(11)" value="23"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="26"/>
-            <column name="city_id" type="int(11)" value="24"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="27"/>
-            <column name="city_id" type="int(11)" value="25"/>
-        </insert>
-        <insert tableName="airports_cities">
-            <column name="airport_id" type="int(11)" value="28"/>
-            <column name="city_id" type="int(11)" value="25"/>
-        </insert>
-    </changeSet>
-    <changeSet id="5" author="estaine">
-        <insert tableName="connections">
-            <column name="airport_from_id" type="int(11)" value="15"/>
-            <column name="airport_to_id" type="int(11)" value="28"/>
-        </insert>
-        <insert tableName="connections">
-            <column name="airport_from_id" type="int(11)" value="20"/>
-            <column name="airport_to_id" type="int(11)" value="25"/>
-        </insert>
-        <insert tableName="connections">
-            <column name="airport_from_id" type="int(11)" value="18"/>
-            <column name="airport_to_id" type="int(11)" value="26"/>
-        </insert>
-        <insert tableName="connections">
-            <column name="airport_from_id" type="int(11)" value="17"/>
-            <column name="airport_to_id" type="int(11)" value="18"/>
-        </insert>
-        <insert tableName="connections">
-            <column name="airport_from_id" type="int(11)" value="16"/>
-            <column name="airport_to_id" type="int(11)" value="24"/>
-        </insert>
+    <changeSet author="estaine" id="1">
+        <dropAllForeignKeyConstraints baseTableName="airlines"/>
+        <dropAllForeignKeyConstraints baseTableName="airports"/>
+        <dropAllForeignKeyConstraints baseTableName="airports_cities"/>
+        <dropAllForeignKeyConstraints baseTableName="cities"/>
+        <dropAllForeignKeyConstraints baseTableName="countries"/>
+        <dropAllForeignKeyConstraints baseTableName="flights"/>
 
-        <insert tableName="carriers">
-            <column name="name" type="varchar(45)" value="Germanwings"/>
-        </insert>
-        <insert tableName="carriers">
-            <column name="name" type="varchar(45)" value="Ryanair"/>
-        </insert>
-        <insert tableName="carriers">
-            <column name="name" type="varchar(45)" value="easyJet"/>
-        </insert>
+        <dropTable tableName="airlines"/>
+        <dropTable tableName="airports"/>
+        <dropTable tableName="airports_cities"/>
+        <dropTable tableName="cities"/>
+        <dropTable tableName="countries"/>
+        <dropTable tableName="flights"/>
     </changeSet>
-    <changeSet id="6" author="estaine">
-        <insert tableName="carriers_connections">
-            <column name="carrier_id" type="int(11)" value="4"/>
-            <column name="connection_id" type="int(11)" value="7"/>
-        </insert>
-        <insert tableName="carriers_connections">
-            <column name="carrier_id" type="int(11)" value="4"/>
-            <column name="connection_id" type="int(11)" value="8"/>
-        </insert>
-        <insert tableName="carriers_connections">
-            <column name="carrier_id" type="int(11)" value="5"/>
-            <column name="connection_id" type="int(11)" value="8"/>
-        </insert>
-        <insert tableName="carriers_connections">
-            <column name="carrier_id" type="int(11)" value="6"/>
-            <column name="connection_id" type="int(11)" value="9"/>
-        </insert>
-        <insert tableName="carriers_connections">
-            <column name="carrier_id" type="int(11)" value="6"/>
-            <column name="connection_id" type="int(11)" value="10"/>
-        </insert>
-        <insert tableName="carriers_connections">
-            <column name="carrier_id" type="int(11)" value="6"/>
-            <column name="connection_id" type="int(11)" value="11"/>
-        </insert>
-    </changeSet>
-    <changeSet id="7" author="estaine">
 
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-1">
+        <createTable tableName="airlines">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="CHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="icon_location" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-2">
+        <createTable tableName="airports">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-3">
+        <createTable tableName="airports_cities">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="airport_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-4">
+        <createTable tableName="cities">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-5">
+        <createTable tableName="countries">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-6">
+        <createTable tableName="flights">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="airline_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="airport_from_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="airport_to_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_datetime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_datetime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet author="AndreyRykhalsky (generated)" id="1423247133527-7">
+        <addUniqueConstraint columnNames="code" constraintName="code_UNIQUE" deferrable="false" disabled="false" initiallyDeferred="false" tableName="airports"/>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-8">
+        <addUniqueConstraint columnNames="id" constraintName="id_UNIQUE" deferrable="false" disabled="false" initiallyDeferred="false" tableName="airports"/>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-9">
+        <addForeignKeyConstraint baseColumnNames="airline_id" baseTableName="flights" constraintName="airline" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="airlines"/>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-10">
+        <addForeignKeyConstraint baseColumnNames="airport_id" baseTableName="airports_cities" constraintName="airport" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="airports"/>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-11">
+        <addForeignKeyConstraint baseColumnNames="airport_from_id" baseTableName="flights" constraintName="airport_from" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="airports"/>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-12">
+        <addForeignKeyConstraint baseColumnNames="airport_to_id" baseTableName="flights" constraintName="airport_to" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="airports"/>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-13">
+        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="airports_cities" constraintName="city" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities"/>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247133527-14">
+        <addForeignKeyConstraint baseColumnNames="country_id" baseTableName="cities" constraintName="country" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="countries"/>
+    </changeSet>-->
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247146183-1">
+        <insert tableName="airlines">
+            <column name="id" valueNumeric="4"/>
+            <column name="code" value="4U"/>
+            <column name="name" value="Germanwings"/>
+            <column name="icon_location" value="germanwings.png"/>
+        </insert>
+        <insert tableName="airlines">
+            <column name="id" valueNumeric="5"/>
+            <column name="code" value="FR"/>
+            <column name="name" value="Ryanair"/>
+            <column name="icon_location" value="ryanair.png"/>
+        </insert>
+        <insert tableName="airlines">
+            <column name="id" valueNumeric="6"/>
+            <column name="code" value="U2"/>
+            <column name="name" value="easyJet"/>
+            <column name="icon_location" value="easyjet.png"/>
+        </insert>
+        <insert tableName="airlines">
+            <column name="id" valueNumeric="7"/>
+            <column name="code" value="VY"/>
+            <column name="name" value="vueling"/>
+            <column name="icon_location" value="vueling.png"/>
+        </insert>
+        <insert tableName="airlines">
+            <column name="id" valueNumeric="8"/>
+            <column name="code" value="W6"/>
+            <column name="name" value="WizzAir"/>
+            <column name="icon_location" value="wizzair.png"/>
+        </insert>
+        <insert tableName="airlines">
+            <column name="id" valueNumeric="9"/>
+            <column name="code" value="DY"/>
+            <column name="name" value="norwegian"/>
+            <column name="icon_location" value="norwegian.png"/>
+        </insert>
+        <insert tableName="airlines">
+            <column name="id" valueNumeric="10"/>
+            <column name="code" value="BT"/>
+            <column name="name" value="airBaltic"/>
+            <column name="icon_location" value="airbaltic.png"/>
+        </insert>
+        <insert tableName="airlines">
+            <column name="id" valueNumeric="11"/>
+            <column name="code" value="HV"/>
+            <column name="name" value="Transavia"/>
+            <column name="icon_location" value="transavia.png"/>
+        </insert>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247146183-2">
+        <insert tableName="airports">
+            <column name="id" valueNumeric="15"/>
+            <column name="code" value="CDG"/>
+            <column name="name" value="Paris"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="16"/>
+            <column name="code" value="BVA"/>
+            <column name="name" value="Paris Beauvais"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="17"/>
+            <column name="code" value="BCN"/>
+            <column name="name" value="Barcelona El Prat"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="18"/>
+            <column name="code" value="MAD"/>
+            <column name="name" value="Madrid Barajas"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="19"/>
+            <column name="code" value="MXP"/>
+            <column name="name" value="Milan Malpensa"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="20"/>
+            <column name="code" value="BGY"/>
+            <column name="name" value="Milan Bergamo"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="21"/>
+            <column name="code" value="LIN"/>
+            <column name="name" value="Milan Linate"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="22"/>
+            <column name="code" value="FCO"/>
+            <column name="name" value="Rome Fiumicino"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="23"/>
+            <column name="code" value="CIA"/>
+            <column name="name" value="Rome Ciampino"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="24"/>
+            <column name="code" value="TXL"/>
+            <column name="name" value="Berlin Tegel"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="25"/>
+            <column name="code" value="SXF"/>
+            <column name="name" value="Berlin Schoenefeld"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="26"/>
+            <column name="code" value="DTM"/>
+            <column name="name" value="Dortmund"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="27"/>
+            <column name="code" value="WAW"/>
+            <column name="name" value="Warsaw Chopin"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="28"/>
+            <column name="code" value="WMI"/>
+            <column name="name" value="Warsaw Modlin"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="29"/>
+            <column name="code" value="VNO"/>
+            <column name="name" value="Vilnius"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="30"/>
+            <column name="code" value="CFU"/>
+            <column name="name" value="Corfu (Kerkyra)"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="31"/>
+            <column name="code" value="GOA"/>
+            <column name="name" value="Genova"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="32"/>
+            <column name="code" value="MSQ"/>
+            <column name="name" value="Minsk"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="33"/>
+            <column name="code" value="PMI"/>
+            <column name="name" value="Palma Mallorca"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="34"/>
+            <column name="code" value="OPO"/>
+            <column name="name" value="Porto"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="35"/>
+            <column name="code" value="AGP"/>
+            <column name="name" value="Malaga"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="36"/>
+            <column name="code" value="OSL"/>
+            <column name="name" value="Oslo"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="37"/>
+            <column name="code" value="RYG"/>
+            <column name="name" value="Oslo Rygge"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="38"/>
+            <column name="code" value="TRF"/>
+            <column name="name" value="Oslo Torp"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="39"/>
+            <column name="code" value="KUN"/>
+            <column name="name" value="Kaunas"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="40"/>
+            <column name="code" value="PRG"/>
+            <column name="name" value="Prague"/>
+        </insert>
+        <insert tableName="airports">
+            <column name="id" valueNumeric="41"/>
+            <column name="code" value="BUD"/>
+            <column name="name" value="Budapest"/>
+        </insert>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247146183-3">
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="2"/>
+            <column name="airport_id" valueNumeric="15"/>
+            <column name="city_id" valueNumeric="18"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="3"/>
+            <column name="airport_id" valueNumeric="16"/>
+            <column name="city_id" valueNumeric="18"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="4"/>
+            <column name="airport_id" valueNumeric="17"/>
+            <column name="city_id" valueNumeric="19"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="5"/>
+            <column name="airport_id" valueNumeric="18"/>
+            <column name="city_id" valueNumeric="20"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="6"/>
+            <column name="airport_id" valueNumeric="19"/>
+            <column name="city_id" valueNumeric="21"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="7"/>
+            <column name="airport_id" valueNumeric="20"/>
+            <column name="city_id" valueNumeric="21"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="8"/>
+            <column name="airport_id" valueNumeric="21"/>
+            <column name="city_id" valueNumeric="21"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="9"/>
+            <column name="airport_id" valueNumeric="22"/>
+            <column name="city_id" valueNumeric="22"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="10"/>
+            <column name="airport_id" valueNumeric="23"/>
+            <column name="city_id" valueNumeric="22"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="11"/>
+            <column name="airport_id" valueNumeric="24"/>
+            <column name="city_id" valueNumeric="23"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="12"/>
+            <column name="airport_id" valueNumeric="25"/>
+            <column name="city_id" valueNumeric="23"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="13"/>
+            <column name="airport_id" valueNumeric="26"/>
+            <column name="city_id" valueNumeric="24"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="14"/>
+            <column name="airport_id" valueNumeric="27"/>
+            <column name="city_id" valueNumeric="25"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="15"/>
+            <column name="airport_id" valueNumeric="28"/>
+            <column name="city_id" valueNumeric="25"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="16"/>
+            <column name="airport_id" valueNumeric="29"/>
+            <column name="city_id" valueNumeric="27"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="17"/>
+            <column name="airport_id" valueNumeric="30"/>
+            <column name="city_id" valueNumeric="29"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="18"/>
+            <column name="airport_id" valueNumeric="31"/>
+            <column name="city_id" valueNumeric="28"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="19"/>
+            <column name="airport_id" valueNumeric="32"/>
+            <column name="city_id" valueNumeric="26"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="20"/>
+            <column name="airport_id" valueNumeric="33"/>
+            <column name="city_id" valueNumeric="30"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="21"/>
+            <column name="airport_id" valueNumeric="34"/>
+            <column name="city_id" valueNumeric="31"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="22"/>
+            <column name="airport_id" valueNumeric="35"/>
+            <column name="city_id" valueNumeric="32"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="23"/>
+            <column name="airport_id" valueNumeric="36"/>
+            <column name="city_id" valueNumeric="33"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="24"/>
+            <column name="airport_id" valueNumeric="37"/>
+            <column name="city_id" valueNumeric="33"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="25"/>
+            <column name="airport_id" valueNumeric="38"/>
+            <column name="city_id" valueNumeric="33"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="26"/>
+            <column name="airport_id" valueNumeric="39"/>
+            <column name="city_id" valueNumeric="34"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="27"/>
+            <column name="airport_id" valueNumeric="40"/>
+            <column name="city_id" valueNumeric="35"/>
+        </insert>
+        <insert tableName="airports_cities">
+            <column name="id" valueNumeric="28"/>
+            <column name="airport_id" valueNumeric="41"/>
+            <column name="city_id" valueNumeric="36"/>
+        </insert>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247146183-4">
+        <insert tableName="cities">
+            <column name="id" valueNumeric="18"/>
+            <column name="name" value="Paris"/>
+            <column name="country_id" valueNumeric="6"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="19"/>
+            <column name="name" value="Barcelona"/>
+            <column name="country_id" valueNumeric="7"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="20"/>
+            <column name="name" value="Madrid"/>
+            <column name="country_id" valueNumeric="7"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="21"/>
+            <column name="name" value="Milan"/>
+            <column name="country_id" valueNumeric="8"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="22"/>
+            <column name="name" value="Rome"/>
+            <column name="country_id" valueNumeric="8"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="23"/>
+            <column name="name" value="Berlin"/>
+            <column name="country_id" valueNumeric="9"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="24"/>
+            <column name="name" value="Dortmund"/>
+            <column name="country_id" valueNumeric="9"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="25"/>
+            <column name="name" value="Warsaw"/>
+            <column name="country_id" valueNumeric="10"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="26"/>
+            <column name="name" value="Minsk"/>
+            <column name="country_id" valueNumeric="12"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="27"/>
+            <column name="name" value="Vilnius"/>
+            <column name="country_id" valueNumeric="11"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="28"/>
+            <column name="name" value="Genova"/>
+            <column name="country_id" valueNumeric="8"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="29"/>
+            <column name="name" value="Corfu"/>
+            <column name="country_id" valueNumeric="13"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="30"/>
+            <column name="name" value="Palma Mallorca"/>
+            <column name="country_id" valueNumeric="7"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="31"/>
+            <column name="name" value="Porto"/>
+            <column name="country_id" valueNumeric="14"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="32"/>
+            <column name="name" value="Malaga"/>
+            <column name="country_id" valueNumeric="7"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="33"/>
+            <column name="name" value="Oslo"/>
+            <column name="country_id" valueNumeric="15"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="34"/>
+            <column name="name" value="Kaunas"/>
+            <column name="country_id" valueNumeric="11"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="35"/>
+            <column name="name" value="Prague"/>
+            <column name="country_id" valueNumeric="16"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" valueNumeric="36"/>
+            <column name="name" value="Budapest"/>
+            <column name="country_id" valueNumeric="17"/>
+        </insert>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247146183-5">
+        <insert tableName="countries">
+            <column name="id" valueNumeric="6"/>
+            <column name="name" value="France"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="7"/>
+            <column name="name" value="Spain"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="8"/>
+            <column name="name" value="Italy"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="9"/>
+            <column name="name" value="Germany"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="10"/>
+            <column name="name" value="Poland"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="11"/>
+            <column name="name" value="Lithuania"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="12"/>
+            <column name="name" value="Belarus"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="13"/>
+            <column name="name" value="Greece"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="14"/>
+            <column name="name" value="Portugal"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="15"/>
+            <column name="name" value="Norway"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="16"/>
+            <column name="name" value="Czech Republic"/>
+        </insert>
+        <insert tableName="countries">
+            <column name="id" valueNumeric="17"/>
+            <column name="name" value="Hungary"/>
+        </insert>
+    </changeSet>
+    <changeSet author="AndreyRykhalsky (generated)" id="1423247146183-6">
         <insert tableName="flights">
-            <column name="connection_id" type="int(11)" value="7"/>
-            <column name="carrier_id" type="int(11)" value="4"/>
-            <column name="departure_datetime" type="datetime" value="2014-03-31 21:30:45"/>
-            <column name="flight_duration" type="int(11)" value="180"/>
-            <column name="price" type="double" value="50"/>
+            <column name="id" valueNumeric="2"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="1053"/>
+            <column name="airport_from_id" valueNumeric="16"/>
+            <column name="airport_to_id" valueNumeric="20"/>
+            <column name="departure_datetime" valueDate="2015-03-15 14:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 16:50:00.0"/>
+            <column name="price" valueNumeric="44.15"/>
         </insert>
         <insert tableName="flights">
-            <column name="connection_id" type="int(11)" value="11"/>
-            <column name="carrier_id" type="int(11)" value="6"/>
-            <column name="departure_datetime" type="datetime" value="2014-02-13 11:30:45"/>
-            <column name="flight_duration" type="int(11)" value="235"/>
-            <column name="price" type="double" value="60"/>
+            <column name="id" valueNumeric="37"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="5271"/>
+            <column name="airport_from_id" valueNumeric="21"/>
+            <column name="airport_to_id" valueNumeric="25"/>
+            <column name="departure_datetime" valueDate="2015-03-15 16:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 18:50:00.0"/>
+            <column name="price" valueNumeric="31.12"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="38"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="0053"/>
+            <column name="airport_from_id" valueNumeric="23"/>
+            <column name="airport_to_id" valueNumeric="29"/>
+            <column name="departure_datetime" valueDate="2015-03-15 17:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 20:00:00.0"/>
+            <column name="price" valueNumeric="55.04"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="39"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="2566"/>
+            <column name="airport_from_id" valueNumeric="16"/>
+            <column name="airport_to_id" valueNumeric="17"/>
+            <column name="departure_datetime" valueDate="2015-03-15 18:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 21:30:00.0"/>
+            <column name="price" valueNumeric="71.12"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="40"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="2673"/>
+            <column name="airport_from_id" valueNumeric="25"/>
+            <column name="airport_to_id" valueNumeric="24"/>
+            <column name="departure_datetime" valueDate="2015-03-15 12:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 16:10:00.0"/>
+            <column name="price" valueNumeric="33.9"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="41"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="2922"/>
+            <column name="airport_from_id" valueNumeric="15"/>
+            <column name="airport_to_id" valueNumeric="27"/>
+            <column name="departure_datetime" valueDate="2015-03-15 11:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 14:30:00.0"/>
+            <column name="price" valueNumeric="55.99"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="42"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="0921"/>
+            <column name="airport_from_id" valueNumeric="17"/>
+            <column name="airport_to_id" valueNumeric="32"/>
+            <column name="departure_datetime" valueDate="2015-03-15 14:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 16:20:00.0"/>
+            <column name="price" valueNumeric="33.75"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="43"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="0111"/>
+            <column name="airport_from_id" valueNumeric="19"/>
+            <column name="airport_to_id" valueNumeric="20"/>
+            <column name="departure_datetime" valueDate="2015-03-15 13:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 16:10:00.0"/>
+            <column name="price" valueNumeric="9.99"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="44"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="0358"/>
+            <column name="airport_from_id" valueNumeric="26"/>
+            <column name="airport_to_id" valueNumeric="21"/>
+            <column name="departure_datetime" valueDate="2015-03-15 12:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 13:50:00.0"/>
+            <column name="price" valueNumeric="19.25"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="45"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="4562"/>
+            <column name="airport_from_id" valueNumeric="28"/>
+            <column name="airport_to_id" valueNumeric="30"/>
+            <column name="departure_datetime" valueDate="2015-03-15 11:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 13:40:00.0"/>
+            <column name="price" valueNumeric="93.14"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="46"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="3053"/>
+            <column name="airport_from_id" valueNumeric="33"/>
+            <column name="airport_to_id" valueNumeric="31"/>
+            <column name="departure_datetime" valueDate="2015-03-15 10:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 12:30:00.0"/>
+            <column name="price" valueNumeric="45.13"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="47"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="1224"/>
+            <column name="airport_from_id" valueNumeric="32"/>
+            <column name="airport_to_id" valueNumeric="33"/>
+            <column name="departure_datetime" valueDate="2015-03-15 19:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 22:00:00.0"/>
+            <column name="price" valueNumeric="46.55"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="48"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="0953"/>
+            <column name="airport_from_id" valueNumeric="18"/>
+            <column name="airport_to_id" valueNumeric="15"/>
+            <column name="departure_datetime" valueDate="2015-03-15 22:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 23:50:00.0"/>
+            <column name="price" valueNumeric="38.9"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="49"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="0378"/>
+            <column name="airport_from_id" valueNumeric="15"/>
+            <column name="airport_to_id" valueNumeric="26"/>
+            <column name="departure_datetime" valueDate="2015-03-15 15:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 17:50:00.0"/>
+            <column name="price" valueNumeric="79.2"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="50"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="3657"/>
+            <column name="airport_from_id" valueNumeric="25"/>
+            <column name="airport_to_id" valueNumeric="27"/>
+            <column name="departure_datetime" valueDate="2015-03-15 17:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 19:30:00.0"/>
+            <column name="price" valueNumeric="26.02"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="51"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="0265"/>
+            <column name="airport_from_id" valueNumeric="28"/>
+            <column name="airport_to_id" valueNumeric="19"/>
+            <column name="departure_datetime" valueDate="2015-03-15 13:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 15:50:00.0"/>
+            <column name="price" valueNumeric="19.89"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="52"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="1453"/>
+            <column name="airport_from_id" valueNumeric="27"/>
+            <column name="airport_to_id" valueNumeric="30"/>
+            <column name="departure_datetime" valueDate="2015-03-15 12:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 16:00:00.0"/>
+            <column name="price" valueNumeric="15.99"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="53"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="1356"/>
+            <column name="airport_from_id" valueNumeric="16"/>
+            <column name="airport_to_id" valueNumeric="20"/>
+            <column name="departure_datetime" valueDate="2015-03-15 11:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 14:00:00.0"/>
+            <column name="price" valueNumeric="15.69"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="54"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="1735"/>
+            <column name="airport_from_id" valueNumeric="20"/>
+            <column name="airport_to_id" valueNumeric="33"/>
+            <column name="departure_datetime" valueDate="2015-03-15 15:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 17:10:00.0"/>
+            <column name="price" valueNumeric="76.02"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="55"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="0034"/>
+            <column name="airport_from_id" valueNumeric="16"/>
+            <column name="airport_to_id" valueNumeric="21"/>
+            <column name="departure_datetime" valueDate="2015-03-15 08:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 10:10:00.0"/>
+            <column name="price" valueNumeric="35.91"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="56"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="5413"/>
+            <column name="airport_from_id" valueNumeric="21"/>
+            <column name="airport_to_id" valueNumeric="23"/>
+            <column name="departure_datetime" valueDate="2015-03-15 16:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 19:50:00.0"/>
+            <column name="price" valueNumeric="91.01"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="59"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="0923"/>
+            <column name="airport_from_id" valueNumeric="20"/>
+            <column name="airport_to_id" valueNumeric="25"/>
+            <column name="departure_datetime" valueDate="2015-03-15 07:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 09:00:00.0"/>
+            <column name="price" valueNumeric="19.34"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="60"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="0522"/>
+            <column name="airport_from_id" valueNumeric="25"/>
+            <column name="airport_to_id" valueNumeric="27"/>
+            <column name="departure_datetime" valueDate="2015-03-15 13:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 14:00:00.0"/>
+            <column name="price" valueNumeric="23.15"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="61"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="0261"/>
+            <column name="airport_from_id" valueNumeric="27"/>
+            <column name="airport_to_id" valueNumeric="18"/>
+            <column name="departure_datetime" valueDate="2015-03-15 18:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 19:50:00.0"/>
+            <column name="price" valueNumeric="45.12"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="62"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="0953"/>
+            <column name="airport_from_id" valueNumeric="18"/>
+            <column name="airport_to_id" valueNumeric="20"/>
+            <column name="departure_datetime" valueDate="2015-03-15 22:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 23:50:00.0"/>
+            <column name="price" valueNumeric="33.15"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="63"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="0899"/>
+            <column name="airport_from_id" valueNumeric="33"/>
+            <column name="airport_to_id" valueNumeric="35"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 11:50:00.0"/>
+            <column name="price" valueNumeric="35.26"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="64"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="1256"/>
+            <column name="airport_from_id" valueNumeric="41"/>
+            <column name="airport_to_id" valueNumeric="38"/>
+            <column name="departure_datetime" valueDate="2015-03-16 13:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 15:20:00.0"/>
+            <column name="price" valueNumeric="76.46"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="65"/>
+            <column name="airline_id" valueNumeric="8"/>
+            <column name="number" value="1634"/>
+            <column name="airport_from_id" valueNumeric="32"/>
+            <column name="airport_to_id" valueNumeric="40"/>
+            <column name="departure_datetime" valueDate="2015-03-16 18:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 21:10:00.0"/>
+            <column name="price" valueNumeric="26.73"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="66"/>
+            <column name="airline_id" valueNumeric="9"/>
+            <column name="number" value="8701"/>
+            <column name="airport_from_id" valueNumeric="24"/>
+            <column name="airport_to_id" valueNumeric="19"/>
+            <column name="departure_datetime" valueDate="2015-03-16 20:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 23:00:00.0"/>
+            <column name="price" valueNumeric="36.34"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="67"/>
+            <column name="airline_id" valueNumeric="10"/>
+            <column name="number" value="3463"/>
+            <column name="airport_from_id" valueNumeric="27"/>
+            <column name="airport_to_id" valueNumeric="17"/>
+            <column name="departure_datetime" valueDate="2015-03-16 12:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 14:20:00.0"/>
+            <column name="price" valueNumeric="83.14"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="68"/>
+            <column name="airline_id" valueNumeric="11"/>
+            <column name="number" value="0942"/>
+            <column name="airport_from_id" valueNumeric="25"/>
+            <column name="airport_to_id" valueNumeric="24"/>
+            <column name="departure_datetime" valueDate="2015-03-16 14:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 16:20:00.0"/>
+            <column name="price" valueNumeric="15.73"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="69"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="0233"/>
+            <column name="airport_from_id" valueNumeric="15"/>
+            <column name="airport_to_id" valueNumeric="26"/>
+            <column name="departure_datetime" valueDate="2015-03-16 06:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 09:20:00.0"/>
+            <column name="price" valueNumeric="35.85"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="70"/>
+            <column name="airline_id" valueNumeric="8"/>
+            <column name="number" value="0621"/>
+            <column name="airport_from_id" valueNumeric="18"/>
+            <column name="airport_to_id" valueNumeric="21"/>
+            <column name="departure_datetime" valueDate="2015-03-16 11:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 20:20:00.0"/>
+            <column name="price" valueNumeric="15.49"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="71"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="1673"/>
+            <column name="airport_from_id" valueNumeric="40"/>
+            <column name="airport_to_id" valueNumeric="22"/>
+            <column name="departure_datetime" valueDate="2015-03-16 08:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 20:20:00.0"/>
+            <column name="price" valueNumeric="34.77"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="72"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="1834"/>
+            <column name="airport_from_id" valueNumeric="33"/>
+            <column name="airport_to_id" valueNumeric="27"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 12:00:00.0"/>
+            <column name="price" valueNumeric="54.71"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="73"/>
+            <column name="airline_id" valueNumeric="9"/>
+            <column name="number" value="1092"/>
+            <column name="airport_from_id" valueNumeric="37"/>
+            <column name="airport_to_id" valueNumeric="29"/>
+            <column name="departure_datetime" valueDate="2015-03-16 17:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:40:00.0"/>
+            <column name="price" valueNumeric="16.35"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="74"/>
+            <column name="airline_id" valueNumeric="11"/>
+            <column name="number" value="1004"/>
+            <column name="airport_from_id" valueNumeric="23"/>
+            <column name="airport_to_id" valueNumeric="25"/>
+            <column name="departure_datetime" valueDate="2015-03-16 11:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 13:40:00.0"/>
+            <column name="price" valueNumeric="45.67"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="75"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="0268"/>
+            <column name="airport_from_id" valueNumeric="19"/>
+            <column name="airport_to_id" valueNumeric="39"/>
+            <column name="departure_datetime" valueDate="2015-03-16 09:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 10:50:00.0"/>
+            <column name="price" valueNumeric="25.78"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="76"/>
+            <column name="airline_id" valueNumeric="8"/>
+            <column name="number" value="0611"/>
+            <column name="airport_from_id" valueNumeric="17"/>
+            <column name="airport_to_id" valueNumeric="38"/>
+            <column name="departure_datetime" valueDate="2015-03-16 11:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 15:00:00.0"/>
+            <column name="price" valueNumeric="43.55"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="77"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="1620"/>
+            <column name="airport_from_id" valueNumeric="40"/>
+            <column name="airport_to_id" valueNumeric="32"/>
+            <column name="departure_datetime" valueDate="2015-03-16 22:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 23:40:00.0"/>
+            <column name="price" valueNumeric="72.32"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="78"/>
+            <column name="airline_id" valueNumeric="9"/>
+            <column name="number" value="2346"/>
+            <column name="airport_from_id" valueNumeric="39"/>
+            <column name="airport_to_id" valueNumeric="19"/>
+            <column name="departure_datetime" valueDate="2015-03-15 23:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 00:50:00.0"/>
+            <column name="price" valueNumeric="56.12"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="79"/>
+            <column name="airline_id" valueNumeric="10"/>
+            <column name="number" value="0924"/>
+            <column name="airport_from_id" valueNumeric="38"/>
+            <column name="airport_to_id" valueNumeric="16"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 14:00:00.0"/>
+            <column name="price" valueNumeric="34.09"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="80"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="2490"/>
+            <column name="airport_from_id" valueNumeric="35"/>
+            <column name="airport_to_id" valueNumeric="32"/>
+            <column name="departure_datetime" valueDate="2015-03-16 16:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 18:50:00.0"/>
+            <column name="price" valueNumeric="64.89"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="81"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="5602"/>
+            <column name="airport_from_id" valueNumeric="30"/>
+            <column name="airport_to_id" valueNumeric="33"/>
+            <column name="departure_datetime" valueDate="2015-03-16 15:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 17:30:00.0"/>
+            <column name="price" valueNumeric="34.48"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="82"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="3469"/>
+            <column name="airport_from_id" valueNumeric="20"/>
+            <column name="airport_to_id" valueNumeric="40"/>
+            <column name="departure_datetime" valueDate="2015-03-16 13:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 15:10:00.0"/>
+            <column name="price" valueNumeric="51.53"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="83"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="5836"/>
+            <column name="airport_from_id" valueNumeric="15"/>
+            <column name="airport_to_id" valueNumeric="23"/>
+            <column name="departure_datetime" valueDate="2015-03-16 19:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 20:50:00.0"/>
+            <column name="price" valueNumeric="82.12"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="84"/>
+            <column name="airline_id" valueNumeric="9"/>
+            <column name="number" value="0531"/>
+            <column name="airport_from_id" valueNumeric="41"/>
+            <column name="airport_to_id" valueNumeric="25"/>
+            <column name="departure_datetime" valueDate="2015-03-16 14:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 15:50:00.0"/>
+            <column name="price" valueNumeric="43.09"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="85"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="2468"/>
+            <column name="airport_from_id" valueNumeric="36"/>
+            <column name="airport_to_id" valueNumeric="19"/>
+            <column name="departure_datetime" valueDate="2015-03-16 07:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 10:00:00.0"/>
+            <column name="price" valueNumeric="35.92"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="86"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="9632"/>
+            <column name="airport_from_id" valueNumeric="37"/>
+            <column name="airport_to_id" valueNumeric="17"/>
+            <column name="departure_datetime" valueDate="2015-03-16 13:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 15:20:00.0"/>
+            <column name="price" valueNumeric="40.43"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="87"/>
+            <column name="airline_id" valueNumeric="11"/>
+            <column name="number" value="2349"/>
+            <column name="airport_from_id" valueNumeric="25"/>
+            <column name="airport_to_id" valueNumeric="33"/>
+            <column name="departure_datetime" valueDate="2015-03-16 11:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 13:10:00.0"/>
+            <column name="price" valueNumeric="35.67"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="88"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="6274"/>
+            <column name="airport_from_id" valueNumeric="27"/>
+            <column name="airport_to_id" valueNumeric="41"/>
+            <column name="departure_datetime" valueDate="2015-03-16 18:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 20:40:00.0"/>
+            <column name="price" valueNumeric="20.65"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="89"/>
+            <column name="airline_id" valueNumeric="10"/>
+            <column name="number" value="4503"/>
+            <column name="airport_from_id" valueNumeric="32"/>
+            <column name="airport_to_id" valueNumeric="16"/>
+            <column name="departure_datetime" valueDate="2015-03-15 07:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 08:50:00.0"/>
+            <column name="price" valueNumeric="17.33"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="90"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="0919"/>
+            <column name="airport_from_id" valueNumeric="16"/>
+            <column name="airport_to_id" valueNumeric="28"/>
+            <column name="departure_datetime" valueDate="2015-03-15 11:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 13:50:00.0"/>
+            <column name="price" valueNumeric="53.78"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="91"/>
+            <column name="airline_id" valueNumeric="10"/>
+            <column name="number" value="2361"/>
+            <column name="airport_from_id" valueNumeric="28"/>
+            <column name="airport_to_id" valueNumeric="24"/>
+            <column name="departure_datetime" valueDate="2015-03-15 16:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 19:00:00.0"/>
+            <column name="price" valueNumeric="30.54"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="92"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="1628"/>
+            <column name="airport_from_id" valueNumeric="24"/>
+            <column name="airport_to_id" valueNumeric="32"/>
+            <column name="departure_datetime" valueDate="2015-03-15 21:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 23:00:00.0"/>
+            <column name="price" valueNumeric="27.54"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="93"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="8252"/>
+            <column name="airport_from_id" valueNumeric="32"/>
+            <column name="airport_to_id" valueNumeric="28"/>
+            <column name="departure_datetime" valueDate="2015-03-15 08:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 09:30:00.0"/>
+            <column name="price" valueNumeric="56.34"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="94"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="0932"/>
+            <column name="airport_from_id" valueNumeric="28"/>
+            <column name="airport_to_id" valueNumeric="32"/>
+            <column name="departure_datetime" valueDate="2015-03-15 22:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 23:40:00.0"/>
+            <column name="price" valueNumeric="77.87"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="95"/>
+            <column name="airline_id" valueNumeric="11"/>
+            <column name="number" value="0100"/>
+            <column name="airport_from_id" valueNumeric="15"/>
+            <column name="airport_to_id" valueNumeric="41"/>
+            <column name="departure_datetime" valueDate="2015-03-15 20:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-15 21:40:00.0"/>
+            <column name="price" valueNumeric="34.65"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="132"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="0456"/>
+            <column name="airport_from_id" valueNumeric="18"/>
+            <column name="airport_to_id" valueNumeric="23"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 12:00:00.0"/>
+            <column name="price" valueNumeric="33.51"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="133"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="0533"/>
+            <column name="airport_from_id" valueNumeric="20"/>
+            <column name="airport_to_id" valueNumeric="29"/>
+            <column name="departure_datetime" valueDate="2015-03-16 09:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 10:20:00.0"/>
+            <column name="price" valueNumeric="10.93"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="134"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="4661"/>
+            <column name="airport_from_id" valueNumeric="33"/>
+            <column name="airport_to_id" valueNumeric="39"/>
+            <column name="departure_datetime" valueDate="2015-03-16 11:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 12:20:00.0"/>
+            <column name="price" valueNumeric="47.23"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="135"/>
+            <column name="airline_id" valueNumeric="8"/>
+            <column name="number" value="8998"/>
+            <column name="airport_from_id" valueNumeric="41"/>
+            <column name="airport_to_id" valueNumeric="37"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 11:30:00.0"/>
+            <column name="price" valueNumeric="54.26"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="136"/>
+            <column name="airline_id" valueNumeric="9"/>
+            <column name="number" value="3561"/>
+            <column name="airport_from_id" valueNumeric="30"/>
+            <column name="airport_to_id" valueNumeric="35"/>
+            <column name="departure_datetime" valueDate="2015-03-16 08:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 10:00:00.0"/>
+            <column name="price" valueNumeric="70.92"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="137"/>
+            <column name="airline_id" valueNumeric="10"/>
+            <column name="number" value="0912"/>
+            <column name="airport_from_id" valueNumeric="28"/>
+            <column name="airport_to_id" valueNumeric="40"/>
+            <column name="departure_datetime" valueDate="2015-03-16 07:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 10:00:00.0"/>
+            <column name="price" valueNumeric="44.51"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="138"/>
+            <column name="airline_id" valueNumeric="11"/>
+            <column name="number" value="8352"/>
+            <column name="airport_from_id" valueNumeric="29"/>
+            <column name="airport_to_id" valueNumeric="41"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 12:00:00.0"/>
+            <column name="price" valueNumeric="90.12"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="139"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="6092"/>
+            <column name="airport_from_id" valueNumeric="19"/>
+            <column name="airport_to_id" valueNumeric="33"/>
+            <column name="departure_datetime" valueDate="2015-03-16 11:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 12:20:00.0"/>
+            <column name="price" valueNumeric="45.24"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="140"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="5832"/>
+            <column name="airport_from_id" valueNumeric="17"/>
+            <column name="airport_to_id" valueNumeric="32"/>
+            <column name="departure_datetime" valueDate="2015-03-16 12:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 13:20:00.0"/>
+            <column name="price" valueNumeric="51.09"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="141"/>
+            <column name="airline_id" valueNumeric="8"/>
+            <column name="number" value="0925"/>
+            <column name="airport_from_id" valueNumeric="19"/>
+            <column name="airport_to_id" valueNumeric="16"/>
+            <column name="departure_datetime" valueDate="2015-03-16 08:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 10:00:00.0"/>
+            <column name="price" valueNumeric="45.01"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="142"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="5622"/>
+            <column name="airport_from_id" valueNumeric="22"/>
+            <column name="airport_to_id" valueNumeric="18"/>
+            <column name="departure_datetime" valueDate="2015-03-16 09:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 11:20:00.0"/>
+            <column name="price" valueNumeric="12.88"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="143"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="9440"/>
+            <column name="airport_from_id" valueNumeric="33"/>
+            <column name="airport_to_id" valueNumeric="19"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 13:00:00.0"/>
+            <column name="price" valueNumeric="43.26"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="144"/>
+            <column name="airline_id" valueNumeric="9"/>
+            <column name="number" value="0183"/>
+            <column name="airport_from_id" valueNumeric="40"/>
+            <column name="airport_to_id" valueNumeric="23"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 12:30:00.0"/>
+            <column name="price" valueNumeric="60.9"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="145"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="3824"/>
+            <column name="airport_from_id" valueNumeric="39"/>
+            <column name="airport_to_id" valueNumeric="25"/>
+            <column name="departure_datetime" valueDate="2015-03-16 09:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 11:00:00.0"/>
+            <column name="price" valueNumeric="61.42"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="146"/>
+            <column name="airline_id" valueNumeric="8"/>
+            <column name="number" value="0955"/>
+            <column name="airport_from_id" valueNumeric="29"/>
+            <column name="airport_to_id" valueNumeric="28"/>
+            <column name="departure_datetime" valueDate="2015-03-16 10:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 12:40:00.0"/>
+            <column name="price" valueNumeric="43.82"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="147"/>
+            <column name="airline_id" valueNumeric="9"/>
+            <column name="number" value="4556"/>
+            <column name="airport_from_id" valueNumeric="27"/>
+            <column name="airport_to_id" valueNumeric="26"/>
+            <column name="departure_datetime" valueDate="2015-03-16 06:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 09:00:00.0"/>
+            <column name="price" valueNumeric="32.56"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="148"/>
+            <column name="airline_id" valueNumeric="10"/>
+            <column name="number" value="2661"/>
+            <column name="airport_from_id" valueNumeric="24"/>
+            <column name="airport_to_id" valueNumeric="34"/>
+            <column name="departure_datetime" valueDate="2015-03-16 16:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:00:00.0"/>
+            <column name="price" valueNumeric="22.57"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="149"/>
+            <column name="airline_id" valueNumeric="11"/>
+            <column name="number" value="0774"/>
+            <column name="airport_from_id" valueNumeric="25"/>
+            <column name="airport_to_id" valueNumeric="22"/>
+            <column name="departure_datetime" valueDate="2015-03-16 18:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:50:00.0"/>
+            <column name="price" valueNumeric="33.02"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="150"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="4712"/>
+            <column name="airport_from_id" valueNumeric="30"/>
+            <column name="airport_to_id" valueNumeric="32"/>
+            <column name="departure_datetime" valueDate="2015-03-16 17:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:40:00.0"/>
+            <column name="price" valueNumeric="19.76"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="151"/>
+            <column name="airline_id" valueNumeric="8"/>
+            <column name="number" value="2941"/>
+            <column name="airport_from_id" valueNumeric="31"/>
+            <column name="airport_to_id" valueNumeric="34"/>
+            <column name="departure_datetime" valueDate="2015-03-16 16:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 18:00:00.0"/>
+            <column name="price" valueNumeric="42.9"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="152"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="3536"/>
+            <column name="airport_from_id" valueNumeric="41"/>
+            <column name="airport_to_id" valueNumeric="36"/>
+            <column name="departure_datetime" valueDate="2015-03-16 17:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:00:00.0"/>
+            <column name="price" valueNumeric="55.67"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="153"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="6711"/>
+            <column name="airport_from_id" valueNumeric="36"/>
+            <column name="airport_to_id" valueNumeric="38"/>
+            <column name="departure_datetime" valueDate="2015-03-16 18:20:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:40:00.0"/>
+            <column name="price" valueNumeric="23.61"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="154"/>
+            <column name="airline_id" valueNumeric="9"/>
+            <column name="number" value="0354"/>
+            <column name="airport_from_id" valueNumeric="26"/>
+            <column name="airport_to_id" valueNumeric="41"/>
+            <column name="departure_datetime" valueDate="2015-03-16 19:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 21:00:00.0"/>
+            <column name="price" valueNumeric="42.78"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="155"/>
+            <column name="airline_id" valueNumeric="10"/>
+            <column name="number" value="4723"/>
+            <column name="airport_from_id" valueNumeric="23"/>
+            <column name="airport_to_id" valueNumeric="15"/>
+            <column name="departure_datetime" valueDate="2015-03-16 16:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 18:00:00.0"/>
+            <column name="price" valueNumeric="18.44"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="156"/>
+            <column name="airline_id" valueNumeric="11"/>
+            <column name="number" value="3696"/>
+            <column name="airport_from_id" valueNumeric="22"/>
+            <column name="airport_to_id" valueNumeric="17"/>
+            <column name="departure_datetime" valueDate="2015-03-16 16:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:00:00.0"/>
+            <column name="price" valueNumeric="54.23"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="157"/>
+            <column name="airline_id" valueNumeric="5"/>
+            <column name="number" value="8102"/>
+            <column name="airport_from_id" valueNumeric="18"/>
+            <column name="airport_to_id" valueNumeric="40"/>
+            <column name="departure_datetime" valueDate="2015-03-16 17:10:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:00:00.0"/>
+            <column name="price" valueNumeric="48.2"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="158"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="5421"/>
+            <column name="airport_from_id" valueNumeric="15"/>
+            <column name="airport_to_id" valueNumeric="28"/>
+            <column name="departure_datetime" valueDate="2015-03-16 17:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:00:00.0"/>
+            <column name="price" valueNumeric="99.45"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="159"/>
+            <column name="airline_id" valueNumeric="8"/>
+            <column name="number" value="9000"/>
+            <column name="airport_from_id" valueNumeric="40"/>
+            <column name="airport_to_id" valueNumeric="27"/>
+            <column name="departure_datetime" valueDate="2015-03-16 17:50:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:00:00.0"/>
+            <column name="price" valueNumeric="37.64"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="160"/>
+            <column name="airline_id" valueNumeric="4"/>
+            <column name="number" value="2463"/>
+            <column name="airport_from_id" valueNumeric="30"/>
+            <column name="airport_to_id" valueNumeric="38"/>
+            <column name="departure_datetime" valueDate="2015-03-16 18:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 22:00:00.0"/>
+            <column name="price" valueNumeric="34.25"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="161"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="1489"/>
+            <column name="airport_from_id" valueNumeric="20"/>
+            <column name="airport_to_id" valueNumeric="37"/>
+            <column name="departure_datetime" valueDate="2015-03-16 19:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 21:00:00.0"/>
+            <column name="price" valueNumeric="35.75"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="162"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="1570"/>
+            <column name="airport_from_id" valueNumeric="15"/>
+            <column name="airport_to_id" valueNumeric="33"/>
+            <column name="departure_datetime" valueDate="2015-03-16 18:00:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 20:10:00.0"/>
+            <column name="price" valueNumeric="73.25"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="163"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="4672"/>
+            <column name="airport_from_id" valueNumeric="35"/>
+            <column name="airport_to_id" valueNumeric="19"/>
+            <column name="departure_datetime" valueDate="2015-03-16 16:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 19:10:00.0"/>
+            <column name="price" valueNumeric="60.23"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="164"/>
+            <column name="airline_id" valueNumeric="6"/>
+            <column name="number" value="0942"/>
+            <column name="airport_from_id" valueNumeric="25"/>
+            <column name="airport_to_id" valueNumeric="23"/>
+            <column name="departure_datetime" valueDate="2015-03-16 16:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 18:30:00.0"/>
+            <column name="price" valueNumeric="63.02"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="165"/>
+            <column name="airline_id" valueNumeric="10"/>
+            <column name="number" value="1572"/>
+            <column name="airport_from_id" valueNumeric="36"/>
+            <column name="airport_to_id" valueNumeric="24"/>
+            <column name="departure_datetime" valueDate="2015-03-16 16:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 18:50:00.0"/>
+            <column name="price" valueNumeric="42.62"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="166"/>
+            <column name="airline_id" valueNumeric="11"/>
+            <column name="number" value="2956"/>
+            <column name="airport_from_id" valueNumeric="39"/>
+            <column name="airport_to_id" valueNumeric="38"/>
+            <column name="departure_datetime" valueDate="2015-03-16 18:40:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 20:50:00.0"/>
+            <column name="price" valueNumeric="46.12"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="id" valueNumeric="167"/>
+            <column name="airline_id" valueNumeric="7"/>
+            <column name="number" value="2900"/>
+            <column name="airport_from_id" valueNumeric="19"/>
+            <column name="airport_to_id" valueNumeric="40"/>
+            <column name="departure_datetime" valueDate="2015-03-16 18:30:00.0"/>
+            <column name="arrival_datetime" valueDate="2015-03-16 21:10:00.0"/>
+            <column name="price" valueNumeric="54.77"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

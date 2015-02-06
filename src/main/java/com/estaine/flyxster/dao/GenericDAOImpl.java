@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class GenericDAOImpl <ModelObject> implements GenericDAO <ModelObject> {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    protected SessionFactory sessionFactory;
 
     protected Class<ModelObject> type;
 
@@ -47,5 +47,13 @@ public class GenericDAOImpl <ModelObject> implements GenericDAO <ModelObject> {
     public void delete(ModelObject modelObject) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(modelObject);
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }

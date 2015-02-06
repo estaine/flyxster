@@ -5,7 +5,7 @@
 <meta name="description" content="Flyxster">
 <meta name="author" content="estaine">
 
-<link rel="icon" href="res/icons/favicon.ico">
+<link rel="icon" href="resources/icons/favicon.ico">
 
 <title>Flyxster - Fly cheaper</title>
 

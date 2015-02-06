@@ -1,3 +1,11 @@
+<%@ page import="java.util.Set" %>
+<%@ page import="com.estaine.flyxster.common.FlightGroup" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="com.estaine.flyxster.common.TimestampConverter" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.estaine.flyxster.model.Flight" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="row">
 
   <div class="col-md-2 col-md-offset-2">
@@ -74,207 +82,139 @@
         </thead>
 
         <tbody>
-        <tr class="short-data-row" id="row-1">
-          <td class="airline-logo-container"><img src="/resources/images/airline-logos/norwegian.png" title="norwegian"></td>
-          <td>Warsaw (<b>WAW</b>)</td>
-          <td>Stockholm Skavsta (<b>NYO</b>)</td>
-          <td class="stops-short-cell">0 / 1</td>
-          <td>Sun 15.02.2015</td>
-          <td>13:35</td>
-          <td>Tue 24.02.2015</td>
-          <td>19:10</td>
-          <td align="right"><b>77 EUR</b></td>
-          <td data-toggle="collapse" data-target="#detailed-table-1" class="accordion-toggle line-expander"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></td>
+        <c:set var="flightGroupIndex" value="0"/>
+        <c:forEach items="${flightGroups}" var="flightGroup">
+          <%
+            FlightGroup flightGroup = (FlightGroup) pageContext.getAttribute("flightGroup");
+            pageContext.setAttribute("groupAirlines", flightGroup.getAirlines());
+            pageContext.setAttribute("groupFrom", flightGroup.getDepartureAirport());
+            pageContext.setAttribute("groupTo", flightGroup.getDestinationAirport());
+            pageContext.setAttribute("groupOutwardStops", flightGroup.getOutwardStops());
+            pageContext.setAttribute("groupReturnStops", flightGroup.getReturnStops());
+            pageContext.setAttribute("groupPrice", flightGroup.getTotalPrice());
+
+            Timestamp groupStart = flightGroup.getTripStartTime();
+            Timestamp groupEnd = flightGroup.getTripEndTime();
+
+
+            String groupStartDate = TimestampConverter.toResult(groupStart, TimestampConverter.RESULT_DATE_FORMAT);
+            String groupStartWeekDay = TimestampConverter.toResult(groupStart, TimestampConverter.RESULT_WEEKDAY_FORMAT);
+            String groupStartTime = TimestampConverter.toResult(groupStart, TimestampConverter.RESULT_TIME_FORMAT);
+
+            String groupEndDate = TimestampConverter.toResult(groupEnd, TimestampConverter.RESULT_DATE_FORMAT);
+            String groupEndWeekDay = TimestampConverter.toResult(groupEnd, TimestampConverter.RESULT_WEEKDAY_FORMAT);
+            String groupEndTime = TimestampConverter.toResult(groupEnd, TimestampConverter.RESULT_TIME_FORMAT);
+
+            pageContext.setAttribute("groupStartDate", groupStartDate);
+            pageContext.setAttribute("groupStartWeekDay", groupStartWeekDay);
+            pageContext.setAttribute("groupStartTime", groupStartTime);
+            pageContext.setAttribute("groupEndDate", groupEndDate);
+            pageContext.setAttribute("groupEndWeekDay", groupEndWeekDay);
+            pageContext.setAttribute("groupEndTime", groupEndTime);
+
+
+          %>
+        <c:set var="flightGroupIndex" value="${flightGroupIndex + 1}"/>
+        <tr class="short-data-row" id="row-${flightGroupIndex}">
+          <td class="airline-logo-container">
+            <c:forEach items="${groupAirlines}" var="groupAirline">
+              <img src="<c:url value="/resources/images/airline-logos/${groupAirline.iconLocation}"/>" title="<c:url value="${groupAirline.name}"/>"/>
+            </c:forEach>
+          </td>
+          <td>
+            ${groupFrom.name} (<b>${groupFrom.code}</b>)
+          </td>
+          <td>
+              ${groupTo.name} (<b>${groupTo.code}</b>)
+          </td>
+          <td class="stops-short-cell">
+            ${groupOutwardStops} / ${groupReturnStops}
+          </td>
+          <td>${groupStartWeekDay} ${groupStartDate}</td>
+          <td>${groupStartTime}</td>
+          <td>${groupEndWeekDay} ${groupEndDate}</td>
+          <td>${groupEndTime}</td>
+          <td align="right"><b>
+            <fmt:formatNumber type="number" maxFractionDigits="0" value="${groupPrice}" /> EUR
+          </b></td>
+          <td data-toggle="collapse" data-target="#detailed-table-${flightGroupIndex}" class="accordion-toggle line-expander"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></td>
         </tr>
 
         <tr class="hidden-row">
           <td colspan="10" class="hidden-cell">
-            <div class="accordion-body collapse detailed-data-block"  id="detailed-table-1">
+            <div class="accordion-body collapse detailed-data-block"  id="detailed-table-${flightGroupIndex}">
               <table class="detailed-flight-info">
+          <c:forEach items="${flightGroup}" var="flight">
+            <%
+              Flight flight = (Flight) pageContext.getAttribute("flight");
+
+              Timestamp flightStart = flight.getDepartureDatetime();
+              Timestamp flightEnd = flight.getArrivalDatetime();
+
+              String flightStartDate = TimestampConverter.toResult(flightStart, TimestampConverter.RESULT_DATE_FORMAT);
+              String flightStartWeekDay = TimestampConverter.toResult(flightStart, TimestampConverter.RESULT_WEEKDAY_FORMAT);
+              String flightStartTime = TimestampConverter.toResult(flightStart, TimestampConverter.RESULT_TIME_FORMAT);
+
+              String flightEndDate = TimestampConverter.toResult(flightEnd, TimestampConverter.RESULT_DATE_FORMAT);
+              String flightEndWeekDay = TimestampConverter.toResult(flightEnd, TimestampConverter.RESULT_WEEKDAY_FORMAT);
+              String flightEndTime = TimestampConverter.toResult(flightEnd, TimestampConverter.RESULT_TIME_FORMAT);
+
+              String flightDuration = TimestampConverter.getFlightDuration(flightStart, flightEnd);
+
+              pageContext.setAttribute("flightStartDate", flightStartDate);
+              pageContext.setAttribute("flightStartWeekDay", flightStartWeekDay);
+              pageContext.setAttribute("flightStartTime", flightStartTime);
+              pageContext.setAttribute("flightEndDate", flightEndDate);
+              pageContext.setAttribute("flightEndWeekDay", flightEndWeekDay);
+              pageContext.setAttribute("flightEndTime", flightEndTime);
+              pageContext.setAttribute("flightDuration", flightDuration);
+
+            %>
                 <tr>
-                  <td class="detailed-cell airline-cell">norwegian</td>
-                  <td class="detailed-cell flight-number-cell">DY 1302</td>
-                  <td class="detailed-cell departure-weekday-cell">Sun</td>
-                  <td class="detailed-cell departure-date-cell">15.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Warsaw</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>WAW</b>)</td>
-                  <td class="detailed-cell departure-time-cell">13:35</td>
+                  <td class="detailed-cell airline-cell">
+                    ${flight.airline.name}
+                  </td>
+                  <td class="detailed-cell flight-number-cell">
+                    ${flight.airline.code} ${flight.number}
+                  </td>
+                  <td class="detailed-cell departure-weekday-cell">
+                    ${flightStartWeekDay}
+                  </td>
+                  <td class="detailed-cell departure-date-cell">
+                    ${flightStartDate}
+                  </td>
+                  <td class="detailed-cell departure-airport-cell">
+                    ${flight.airportFrom.name}
+                  </td>
+                  <td class="detailed-cell departure-airport-code-cell">
+                    (<b>${flight.airportFrom.code}</b>)
+                  </td>
+                  <td class="detailed-cell departure-time-cell">
+                      ${flightStartTime}
+                  </td>
                   <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">15:50</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>NYO</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Stockholm Skavsta</td>
-                  <td class="detailed-cell flight-duration-cell">2h 15min</td>
-                  <td class="detailed-cell price-cell"><b>31.12 EUR</b></td>
+                  <td class="detailed-cell arrival-time-cell">
+                      ${flightEndTime}
+                  </td>
+                  <td class="detailed-cell arrival-airport-code-cell">
+                    (<b>${flight.airportTo.code}</b>)
+                  </td>
+                  <td class="detailed-cell arrival-airport-cell">
+                      ${flight.airportTo.name}
+                  </td>
+                  <td class="detailed-cell flight-duration-cell">
+                    ${flightDuration}
+                  </td>
+                  <td class="detailed-cell price-cell"><b>
+                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${flight.price}" /> EUR
+                  </b></td>
                 </tr>
-                <tr>
-                  <td class="detailed-cell airline-cell">norwegian</td>
-                  <td class="detailed-cell flight-number-cell">DY 0102</td>
-                  <td class="detailed-cell departure-weekday-cell">Tue</td>
-                  <td class="detailed-cell departure-date-cell">24.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Stockholm Skavsta</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>NYO</b>)</td>
-                  <td class="detailed-cell departure-time-cell">10:15</td>
-                  <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">11:15</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>TRF</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Oslo Torp</td>
-                  <td class="detailed-cell flight-duration-cell">1h 00min</td>
-                  <td class="detailed-cell price-cell"><b>18.23 EUR</b></td>
-                </tr>
-                <tr>
-                  <td class="detailed-cell airline-cell">norwegian</td>
-                  <td class="detailed-cell flight-number-cell">DY 0671</td>
-                  <td class="detailed-cell departure-weekday-cell">Tue</td>
-                  <td class="detailed-cell departure-date-cell">24.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Oslo Torp</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>TRF</b>)</td>
-                  <td class="detailed-cell departure-time-cell">17:05</td>
-                  <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">19:10</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>WAW</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Warsaw</td>
-                  <td class="detailed-cell flight-duration-cell">2h 05min</td>
-                  <td class="detailed-cell price-cell"><b>27.73 EUR</b></td>
-                </tr>
+            </c:forEach>
               </table>
             </div>
           </td>
         </tr>
-
-        <tr class="short-data-row" id="row-2">
-          <td class="airline-logo-container"><img src="/resources/images/airline-logos/norwegian.png" title="norwegian"><img src="/resources/images/airline-logos/wizzair.png" title="WizzAir"></td>
-          <td>Warsaw (<b>WAW</b>)*</td>
-          <td>Stockholm Skavsta (<b>NYO</b>)</td>
-          <td class="stops-short-cell">0 / 0</td>
-          <td>Sun 15.02.2015</td>
-          <td>13:35</td>
-          <td>Mon 23.02.2015</td>
-          <td>10:00</td>
-          <td align="right"><b>99 EUR</b></td>
-          <td data-toggle="collapse" data-target="#detailed-table-2" class="accordion-toggle line-expander"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></td>
-        </tr>
-
-        <tr class="hidden-row">
-          <td colspan="10" class="hidden-cell">
-            <div class="accordion-body collapse detailed-data-block"  id="detailed-table-2">
-              <table class="detailed-flight-info">
-                <tr>
-                  <td class="detailed-cell airline-cell">norwegian</td>
-                  <td class="detailed-cell flight-number-cell">DY 1302</td>
-                  <td class="detailed-cell departure-weekday-cell">Sun</td>
-                  <td class="detailed-cell departure-date-cell">15.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Warsaw</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>WAW</b>)</td>
-                  <td class="detailed-cell departure-time-cell">13:35</td>
-                  <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">15:50</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>NYO</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Stockholm Skavsta</td>
-                  <td class="detailed-cell flight-duration-cell">2h 15min</td>
-                  <td class="detailed-cell price-cell"><b>31.12 EUR</b></td>
-                </tr>
-                <tr>
-                  <td class="detailed-cell airline-cell">WizzAir</td>
-                  <td class="detailed-cell flight-number-cell">W6 1104</td>
-                  <td class="detailed-cell departure-weekday-cell">Mon</td>
-                  <td class="detailed-cell departure-date-cell">23.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Stockholm Skavsta</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>NYO</b>)</td>
-                  <td class="detailed-cell departure-time-cell">08:00</td>
-                  <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">10:00</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>WMI</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Warsaw Modlin</td>
-                  <td class="detailed-cell flight-duration-cell">2h 00min</td>
-                  <td class="detailed-cell price-cell"><b>67.75 EUR</b></td>
-                </tr>
-              </table>
-            </div>
-          </td>
-        </tr>
-
-        <tr class="short-data-row" id="row-3">
-          <td class="airline-logo-container"><img src="/resources/images/airline-logos/ryanair.png" title="Ryanair"><img src="/resources/images/airline-logos/wizzair.png" title="WizzAir"><img src="/resources/images/airline-logos/norwegian.png" title="norwegian"></td>
-          <td>Warsaw Modlin (<b>WMI</b>)</td>
-          <td>Stockholm Arlanda (<b>ARL</b>)*</td>
-          <td class="stops-short-cell">1 / 1</td>
-          <td>Fri 13.02.2015</td>
-          <td>23:15</td>
-          <td>Wed 25.02.2015</td>
-          <td>14:40</td>
-          <td align="right"><b>112 EUR</b></td>
-          <td data-toggle="collapse" data-target="#detailed-table-3" class="accordion-toggle line-expander"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></td>
-        </tr>
-
-        <tr class="hidden-row">
-          <td colspan="10" class="hidden-cell">
-            <div class="accordion-body collapse detailed-data-block"  id="detailed-table-3">
-              <table class="detailed-flight-info">
-                <tr>
-                  <td class="detailed-cell airline-cell">Ryanair</td>
-                  <td class="detailed-cell flight-number-cell">FR 4423</td>
-                  <td class="detailed-cell departure-weekday-cell">Fri</td>
-                  <td class="detailed-cell departure-date-cell">13.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Warsaw Modlin</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>WMI</b>)</td>
-                  <td class="detailed-cell departure-time-cell">23:15</td>
-                  <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">01:40*</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>CRL</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Brussels Charleroi</td>
-                  <td class="detailed-cell flight-duration-cell">2h 25min</td>
-                  <td class="detailed-cell price-cell"><b>16.55 EUR</b></td>
-                </tr>
-                <tr>
-                  <td class="detailed-cell airline-cell">WizzAir</td>
-                  <td class="detailed-cell flight-number-cell">W6 1293</td>
-                  <td class="detailed-cell departure-weekday-cell">Sat</td>
-                  <td class="detailed-cell departure-date-cell">14.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Brussels Charleroi</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>CRL</b>)</td>
-                  <td class="detailed-cell departure-time-cell">06:10</td>
-                  <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">07:45</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>ARL</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Stockholm Arlanda</td>
-                  <td class="detailed-cell flight-duration-cell">1h 35min</td>
-                  <td class="detailed-cell price-cell"><b>37.23 EUR</b></td>
-                </tr>
-                <tr>
-                  <td class="detailed-cell airline-cell">norwegian</td>
-                  <td class="detailed-cell flight-number-cell">DY 0451</td>
-                  <td class="detailed-cell departure-weekday-cell">Wed</td>
-                  <td class="detailed-cell departure-date-cell">25.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Stockholm Bromma</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>BMA</b>)*</td>
-                  <td class="detailed-cell departure-time-cell">09:25</td>
-                  <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">10:30</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>RYG</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Oslo Rygge</td>
-                  <td class="detailed-cell flight-duration-cell">1h 05min</td>
-                  <td class="detailed-cell price-cell"><b>22.99 EUR</b></td>
-                </tr>
-                <tr>
-                  <td class="detailed-cell airline-cell">WizzAir</td>
-                  <td class="detailed-cell flight-number-cell">W6 2601</td>
-                  <td class="detailed-cell departure-weekday-cell">Wed</td>
-                  <td class="detailed-cell departure-date-cell">25.02.2015</td>
-                  <td class="detailed-cell departure-airport-cell">Oslo Torp</td>
-                  <td class="detailed-cell departure-airport-code-cell">(<b>TRF</b>)*</td>
-                  <td class="detailed-cell departure-time-cell">12:15</td>
-                  <td class="detailed-cell">-</td>
-                  <td class="detailed-cell arrival-time-cell">14:40</td>
-                  <td class="detailed-cell arrival-airport-code-cell">(<b>WMI</b>)</td>
-                  <td class="detailed-cell arrival-airport-cell">Warsaw Modlin</td>
-                  <td class="detailed-cell flight-duration-cell">2h 25min</td>
-                  <td class="detailed-cell price-cell"><b>35.34 EUR</b></td>
-                </tr>
-              </table>
-            </div>
-          </td>
-        </tr>
-
+        </c:forEach>
         </tbody>
       </table>
     </div>

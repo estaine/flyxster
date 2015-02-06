@@ -51,10 +51,51 @@ function destroyReturnDatepicker() {
 $(document).ready(function() {
     var $input = $(".airport");
     $input.typeahead({
-        source: ["Amsterdam (AMS)", "Barcelona (BCN)", "Brussels Charleroi (CRL)", "Madrid (MAD)", "Milan Bergamo (BGY)", "Paris Beauvais (BVA)", "Riga (RIX)", "Rome Ciampino (CIA)", "Rome Fiumicino (FCO)", "Vilnius (VNO)"],
+
+        source: function (query, process) {
+
+            return $.ajax({
+                url: "/typeahead",
+                type: 'post',
+                data: { query: query },
+                dataType: 'json',
+                success: function (jsonResult) {
+                    return typeof jsonResult == 'undefined' ? false : process(jsonResult);
+                }
+            });
+        },
         autoSelect: true
     });
 
+    $("#airport-from").change(function() {
+        var current = $("#airport-from").typeahead("getActive");
+        if (current) {
+
+            if (current.name == $("#airport-from").val()) {
+                $("#airportFromId").val((current.id));
+            } else {
+                // This means it is only a partial match, you can either add a new item
+                // or take the active if you don't want new items
+            }
+        } else {
+            // Nothing is active so it is a new value (or maybe empty value)
+        }
+    });
+
+    $("#airport-to").change(function() {
+        var current = $("#airport-to").typeahead("getActive");
+        if (current) {
+
+            if (current.name == $("#airport-to").val()) {
+                $("#airportToId").val((current.id));
+            } else {
+                // This means it is only a partial match, you can either add a new item
+                // or take the active if you don't want new items
+            }
+        } else {
+            // Nothing is active so it is a new value (or maybe empty value)
+        }
+    });
 
     $(".flight-type-selector").click(function() {
         if ($("input[name=flight-type]:checked").val() == "One-way")

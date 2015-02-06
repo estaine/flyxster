@@ -74,3 +74,24 @@ input.date:hover {
 .date-disabled {
   background-color: #bbbbbb !important;
 }
+.date-range-container {
+  padding-top: 20px;
+}
+.date-range-container a {
+  background-color: #222222 !important;
+  color: #cccccc !important;
+}
+.date-range-container a:hover {
+  cursor: pointer!important;
+}
+.date-range-container li.active > a {
+  background-color: #cccccc !important;
+  color: #222222 !important;
+}
+.datepicker table {
+  color: #333333;
+}
+.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
