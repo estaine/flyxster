@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
  * Created by AndreyRykhalsky on 02.02.2015.
  */
 @Repository
-public class AirportCityDAOImpl extends GenericDAOImpl <AirportCity> implements AirportCityDAO {
+public class AirportCityDAOImpl extends GenericDAOImpl<AirportCity> implements AirportCityDAO {
 
 
 }

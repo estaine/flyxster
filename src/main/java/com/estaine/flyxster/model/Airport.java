@@ -9,19 +9,22 @@ import java.util.Set;
 @Entity
 @Table(name = "airports", schema = "", catalog = "flyxster")
 public class Airport {
-    private int id;
+    private Integer id;
     private String code;
     private String name;
+    private String timezone;
     private Set<City> cities;
+
+    public Airport() {}
 
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -44,6 +47,14 @@ public class Airport {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Basic
+    @Column(name = "timezone", nullable = false, insertable = true, updatable = true, length = 3)
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) { this.timezone = timezone; }
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="airports_cities",
@@ -68,11 +79,14 @@ public class Airport {
 
         Airport airport = (Airport) o;
 
-        return (id != airport.id);
+        if (id != airport.id) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result = id;
+        return result;
     }
 }

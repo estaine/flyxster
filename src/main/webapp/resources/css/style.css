@@ -46,10 +46,10 @@ body {
   height: 60px;
   vertical-align: middle;
 }
-.flight-type-selector + label {
+#flight-type-selector-container > label {
   font-size: 14px;
   font-weight: normal;
-  margin-left: 6px;
+  margin-left: 12px;
 }
 .airport-addon,
 .date-addon {

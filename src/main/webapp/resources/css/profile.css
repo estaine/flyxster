@@ -1,0 +1,10 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.profile-label {
+  font-size: 18px;
+}
+.password {
+  width: 60%;
+}

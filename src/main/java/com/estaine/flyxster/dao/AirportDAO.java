@@ -1,6 +1,7 @@
 package com.estaine.flyxster.dao;
 
 import com.estaine.flyxster.model.Airport;
+import com.estaine.flyxster.model.City;
 
 import java.util.List;
 
@@ -9,4 +10,5 @@ import java.util.List;
  */
 public interface AirportDAO extends GenericDAO <Airport> {
     public List<Airport> getAirportsBySuggestion(String userInput);
+    public Airport getAirportByCity(City city);
 }

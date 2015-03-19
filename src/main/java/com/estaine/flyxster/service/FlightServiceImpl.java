@@ -3,17 +3,18 @@ package com.estaine.flyxster.service;
 import com.estaine.flyxster.common.FlightGroup;
 import com.estaine.flyxster.common.FlightPeriod;
 import com.estaine.flyxster.common.TimestampConverter;
-import com.estaine.flyxster.dao.AirportDAO;
-import com.estaine.flyxster.dao.CityDAO;
-import com.estaine.flyxster.dao.FlightDAO;
+import com.estaine.flyxster.dao.*;
 import com.estaine.flyxster.dto.DirectedOneWaySimpleSearch;
 import com.estaine.flyxster.dto.SimpleFlightParameterSet;
 import com.estaine.flyxster.dto.SimpleSearch;
 import com.estaine.flyxster.model.Flight;
+import com.estaine.flyxster.model.Search;
+import com.estaine.flyxster.model.SearchLine;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -32,16 +33,32 @@ public class FlightServiceImpl implements FlightService {
     @Autowired
     private AirportDAO airportDAO;
 
+    @Autowired
+    private SearchDAO searchDAO;
+
+    @Autowired
+    private SearchLineDAO searchLineDAO;
+
 
     /*
         TODO: Refactor flight processing to make the implementation independent of number of legs and direction
      */
 
+  /* private void removeOutdatedFlights(List<Flight> flights) {
+        for(Flight flight : flights) {
+            for(Flight comparedFlight : flights) {
+                if((flight.equals(comparedFlight)) && (flight.getId() != comparedFlight.getId())) {
+                    if(flight.getAdded().getTime() > comparedFlight.getAdded().getTime())
+                        flights.remove()
+                }
 
+            }
+        }
+    }*/
 
-    private Set<FlightGroup> getOneWayDirectFlights(DirectedOneWaySimpleSearch directedOneWaySimpleSearch, FlightPeriod flightPeriod) {
+    private List<FlightGroup> getOneWayDirectFlights(DirectedOneWaySimpleSearch directedOneWaySimpleSearch, FlightPeriod flightPeriod) {
 
-        SortedSet<FlightGroup> result = new TreeSet<FlightGroup>();
+        List<FlightGroup> result = new ArrayList<>();
 
         SimpleFlightParameterSet parameterSet =
                 new SimpleFlightParameterSet(
@@ -61,15 +78,15 @@ public class FlightServiceImpl implements FlightService {
 
     }
 
-    private Set<FlightGroup> getOneWayDirectFlights(DirectedOneWaySimpleSearch directedOneWaySimpleSearch) {
+    private List<FlightGroup> getOneWayDirectFlights(DirectedOneWaySimpleSearch directedOneWaySimpleSearch) {
         Timestamp timestamp = TimestampConverter.toTimestamp(directedOneWaySimpleSearch.getOutwardDate());
         FlightPeriod flightPeriod = new FlightPeriod(timestamp, directedOneWaySimpleSearch.getOutwardDateRange());
         return getOneWayDirectFlights(directedOneWaySimpleSearch, flightPeriod);
     }
 
-    private Set<FlightGroup> getOneWayStopoverFlights(DirectedOneWaySimpleSearch directedOneWaySimpleSearch) {
+    private List<FlightGroup> getOneWayStopoverFlights(DirectedOneWaySimpleSearch directedOneWaySimpleSearch) {
 
-        SortedSet<FlightGroup> result = new TreeSet<FlightGroup>();
+        List<FlightGroup> result = new ArrayList<FlightGroup>();
 
         //master leg means 1st for outward and 2nd for return flight
         //date and time of start/end of a trip are date and time of correspondent master legs departure/arrival
@@ -79,7 +96,7 @@ public class FlightServiceImpl implements FlightService {
         else
             masterLegSimpleSearch.setAirportFromId(null);
 
-        Set<FlightGroup> masterLegFlights = getOneWayDirectFlights(masterLegSimpleSearch);
+        List<FlightGroup> masterLegFlights = getOneWayDirectFlights(masterLegSimpleSearch);
 
         for(FlightGroup masterLegFlightGroup : masterLegFlights) {
             Flight masterLegFlight = masterLegFlightGroup.get(0);
@@ -91,7 +108,7 @@ public class FlightServiceImpl implements FlightService {
             else
                 slaveLegSimpleSearch.setAirportToId(masterLegFlight.getAirportFrom().getId());
 
-            Set<FlightGroup> slaveLegFlights = getOneWayDirectFlights(slaveLegSimpleSearch, new FlightPeriod(masterLegFlight, directedOneWaySimpleSearch.isOutward()));
+            List<FlightGroup> slaveLegFlights = getOneWayDirectFlights(slaveLegSimpleSearch, new FlightPeriod(masterLegFlight, directedOneWaySimpleSearch.isOutward()));
 
             for(FlightGroup slaveLegFlightGroup : slaveLegFlights) {
                 Flight slaveLegFlight = slaveLegFlightGroup.get(0);
@@ -112,17 +129,17 @@ public class FlightServiceImpl implements FlightService {
         return result;
     }
 
-    private Set<FlightGroup> getOneWayFlights(DirectedOneWaySimpleSearch directedOneWaySimpleSearch) {
-        SortedSet<FlightGroup> result = new TreeSet<FlightGroup>();
+    private List<FlightGroup> getOneWayFlights(DirectedOneWaySimpleSearch directedOneWaySimpleSearch) {
+        List<FlightGroup> result = new ArrayList<>();
         result.addAll(getOneWayDirectFlights(directedOneWaySimpleSearch));
         result.addAll(getOneWayStopoverFlights(directedOneWaySimpleSearch));
         return result;
     }
 
-    public Set<FlightGroup> getFlights(SimpleSearch simpleSearch) {
+    public List<FlightGroup> getFlights(SimpleSearch simpleSearch) {
 
         DirectedOneWaySimpleSearch outwardSearch = new DirectedOneWaySimpleSearch(simpleSearch, DirectedOneWaySimpleSearch.OUTWARD);
-        Set<FlightGroup> outwardFlightGroups = getOneWayFlights(outwardSearch);
+        List<FlightGroup> outwardFlightGroups = getOneWayFlights(outwardSearch);
         for(FlightGroup outwardFlightGroup : outwardFlightGroups)
             outwardFlightGroup.setOutwardSize(outwardFlightGroup.size());
 
@@ -134,10 +151,10 @@ public class FlightServiceImpl implements FlightService {
                 DirectedOneWaySimpleSearch.RETURN
         );
 
-        Set<FlightGroup> result = new TreeSet<FlightGroup>();
+        List<FlightGroup> result = new ArrayList<FlightGroup>();
 
-        if(simpleSearch.getReturnDate() != "") {
-            Set<FlightGroup> returnFlightGroups = getOneWayFlights(returnSearch);
+        if(simpleSearch.getTwoWayFlight()) {
+            List<FlightGroup> returnFlightGroups = getOneWayFlights(returnSearch);
 
             //Form result as cartesian product of all outward and return flights
             for (FlightGroup outwardFlightGroup : outwardFlightGroups)
@@ -165,6 +182,15 @@ public class FlightServiceImpl implements FlightService {
                     Hibernate.initialize(flight.getAirportTo());
                 }
 
+        Collections.sort(result);
         return result;
     }
+
+    @Override
+    public void bulkUpdateFlights(List<Flight> flights) {
+        for(Flight flight : flights) {
+            flightDAO.create(flight);
+        }
+    }
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by AndreyRykhalsky on 02.02.2015.
  */
-public interface FlightDAO extends GenericDAO <Flight> {
+public interface FlightDAO extends GenericDAO<Flight> {
     public List<Flight> getFlightsBySimpleParameterSet(SimpleFlightParameterSet simpleFlightParameterSet);
 
 }

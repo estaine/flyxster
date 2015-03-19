@@ -5,10 +5,7 @@ import com.estaine.flyxster.model.Airport;
 import com.estaine.flyxster.model.Flight;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by AndreyRykhalsky on 05.02.2015.
@@ -56,8 +53,19 @@ public class FlightGroup extends ArrayList<Flight> implements Comparable<FlightG
 
     public Timestamp getTripEndTime() {
 
+        if(isEmpty()) return null;
         Flight lastFlight = get(size() - 1);
         return lastFlight.getArrivalDatetime();
+    }
+
+    public TimeZone getTripStartTimeZone() {
+        return (isEmpty()) ? null : TimeZone.getTimeZone(get(0).getAirportFrom().getTimezone());
+    }
+
+    public TimeZone getTripEndTimeZone() {
+        if(isEmpty()) return null;
+        Flight lastFlight = get(size() - 1);
+        return TimeZone.getTimeZone(lastFlight.getAirportTo().getTimezone());
     }
 
     public Airport getDestinationAirport() {

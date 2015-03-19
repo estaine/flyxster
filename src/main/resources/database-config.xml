@@ -38,4 +38,5 @@
 
     <bean name="configurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
           p:location="classpath:db.connection.properties"/>
+
 </beans>

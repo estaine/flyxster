@@ -14,5 +14,8 @@ import java.util.Set;
  */
 public interface FlightService {
     @Transactional
-    public Set<FlightGroup> getFlights(SimpleSearch simpleSearch);
+    public List<FlightGroup> getFlights(SimpleSearch simpleSearch);
+
+    @Transactional
+    public void bulkUpdateFlights(List<Flight> flights);
 }

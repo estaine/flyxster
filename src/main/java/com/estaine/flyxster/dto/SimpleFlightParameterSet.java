@@ -49,4 +49,5 @@ public class SimpleFlightParameterSet {
     public void setOutwardFlight(boolean outwardFlight) {
         this.outwardFlight = outwardFlight;
     }
+
 }

@@ -6,7 +6,7 @@
 
     <definition name="mainTemplate" template="/WEB-INF/templates/template.jsp">
         <put-attribute name="head" value="/WEB-INF/static/head.jsp" />
-        <put-attribute name="nav" value="/WEB-INF/static/nav.jsp" />
+        <put-attribute name="nav" value="" />
         <put-attribute name="logo" value="/WEB-INF/static/logo.jsp" />
         <put-attribute name="mainContent" value="" />
 
@@ -18,6 +18,7 @@
             <add-attribute value="/resources/bootstrap/js/bootstrap.js" />
             <add-attribute value="/resources/js/typeahead.js" />
             <add-attribute value="/resources/bootstrap-datepicker/js/bootstrap-datepicker.js" />
+            <add-attribute value="/resources/bootstrap-datepicker/js/bootstrap-datepicker.ru.js" />
             <add-attribute value="/resources/js/init.js" />
         </put-list-attribute>
 
@@ -28,22 +29,40 @@
             <add-attribute value="/resources/css/fonts.css" />
             <add-attribute value="/resources/css/style.css" />
         </put-list-attribute>
-
-
-
     </definition>
 
-    <definition name="index" extends="mainTemplate">
+    <definition name="commonTemplate" extends="mainTemplate">
+        <put-attribute name="nav" value="/WEB-INF/static/nav.jsp" />
+    </definition>
+
+    <definition name="index" extends="commonTemplate">
         <put-attribute name="mainContent" value="/WEB-INF/bodies/index.jsp" />
         <put-attribute name="specialJavascript" value="/resources/js/index.js" />
         <put-attribute name="specialStylesheet" value="/resources/css/index.css" />
 
     </definition>
 
-    <definition name="search" extends="mainTemplate">
+    <definition name="search" extends="commonTemplate">
         <put-attribute name="mainContent" value="/WEB-INF/bodies/search.jsp" />
         <put-attribute name="specialJavascript" value="/resources/js/search.js" />
         <put-attribute name="specialStylesheet" value="/resources/css/search.css" />
+    </definition>
+
+    <definition name="profile" extends="commonTemplate">
+        <put-attribute name="mainContent" value="/WEB-INF/bodies/profile.jsp" />
+        <put-attribute name="specialStylesheet" value="/resources/css/profile.css" />
+    </definition>
+
+
+
+    <definition name="login" extends="mainTemplate">
+        <put-attribute name="mainContent" value="/WEB-INF/security/login.jsp" />
+        <put-attribute name="specialJavascript" value="/resources/js/index.js" />
+        <put-attribute name="specialStylesheet" value="/resources/css/login.css" />
+    </definition>
+
+    <definition name="403" extends="mainTemplate">
+        <put-attribute name="mainContent" value="/WEB-INF/security/403.jsp" />
     </definition>
 
 </tiles-definitions>

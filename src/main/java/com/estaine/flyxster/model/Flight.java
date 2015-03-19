@@ -1,5 +1,7 @@
 package com.estaine.flyxster.model;
 
+import com.estaine.flyxster.common.TimestampConverter;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -17,6 +19,7 @@ public class Flight {
     private Timestamp departureDatetime;
     private Timestamp arrivalDatetime;
     private double price;
+    private Timestamp added;
 
     @Id
     @GeneratedValue
@@ -49,7 +52,7 @@ public class Flight {
         this.airline = airline;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "airport_from_id")
     public Airport getAirportFrom() {
         return airportFrom;
@@ -59,7 +62,7 @@ public class Flight {
         this.airportFrom = airportFrom;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "airport_to_id")
     public Airport getAirportTo() {
         return airportTo;
@@ -99,4 +102,37 @@ public class Flight {
         this.price = price;
     }
 
+    @Basic
+    @Column(name = "added", nullable = false, insertable = true, updatable = true)
+    public Timestamp getAdded() {
+        return added;
+    }
+
+    public void setAdded(Timestamp added) {
+        this.added = added;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Flight flight = (Flight) o;
+
+        if (!airline.equals(flight.airline)) return false;
+        if (!arrivalDatetime.equals(flight.arrivalDatetime)) return false;
+        if (!departureDatetime.equals(flight.departureDatetime)) return false;
+        if (!number.equals(flight.number)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = airline.hashCode();
+        result = 31 * result + number.hashCode();
+        result = 31 * result + departureDatetime.hashCode();
+        result = 31 * result + arrivalDatetime.hashCode();
+        return result;
+    }
 }

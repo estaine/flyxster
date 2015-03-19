@@ -1,12 +1,15 @@
-function initOutwardDatepicker() {
-    var outwardDate = new Date();
+function initOutwardDatepicker(outwardDate) {
+
+    if(typeof outwardDate === "undefined")
+        outwardDate = new Date();
 
     $("#date-from-group").datepicker({
         format: "d M yyyy",
+        language: $("#locale").val(),
         autoclose: true
     });
 
-    $("#date-from-group").datepicker("setStartDate", outwardDate);
+    $("#date-from-group").datepicker("setStartDate", new Date());
     $("#date-from-group").datepicker("setDate", outwardDate);
     $("#date-from-group").datepicker().on("changeDate", function() {
         if(!($("#date-to-group > *").hasClass("date-disabled"))) {
@@ -25,13 +28,15 @@ function initOutwardDatepicker() {
     });
 }
 
-function initReturnDatepicker() {
-    var outwardDate = $("#date-from-group").datepicker("getDate");
-    var returnDate =  new Date(outwardDate);
-    returnDate.setDate(returnDate.getDate() + 7);
-
+function initReturnDatepicker(returnDate) {
+    if(typeof returnDate === "undefined") {
+        var outwardDate = $("#date-from-group").datepicker("getDate");
+        returnDate =  new Date(outwardDate);
+        returnDate.setDate(returnDate.getDate() + 7);
+    }
     $("#date-to-group").datepicker({
         format: "d M yyyy",
+        language: $("#locale").val(),
         autoclose: true
     });
 
@@ -47,6 +52,7 @@ function destroyReturnDatepicker() {
     $("#date-to-group > *").addClass("date-disabled");
     $("#date-to").val("");
 }
+
 
 $(document).ready(function() {
     var $input = $(".airport");
@@ -97,14 +103,19 @@ $(document).ready(function() {
         }
     });
 
-    $(".flight-type-selector").click(function() {
-        if ($("input[name=flight-type]:checked").val() == "One-way")
-            destroyReturnDatepicker();
-        else
+    $("#two-way-flight").click(function() {
+        if ($(this).is(":checked"))
             initReturnDatepicker();
+        else
+            destroyReturnDatepicker();
     });
 
-    initOutwardDatepicker();
-    initReturnDatepicker();
-
+    if($("#airportFromId").val() != "") {
+        initOutwardDatepicker($("#outwardDate").val());
+        initReturnDatepicker($("#returnDate").val());
+    }
+    else {
+        initOutwardDatepicker();
+        initReturnDatepicker();
+    }
 });
